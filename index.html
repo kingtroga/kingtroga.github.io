@@ -1,115 +1,92 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-D3XRG9VF6B"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-D3XRG9VF6B');
   </script>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Tari Y. · Developer</title>
-  <!-- Favicons -->
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
-<link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="shortcut icon" href="favicon.ico">
-<link rel="manifest" href="site.webmanifest">
 
-<!-- OG / Social -->
-<meta property="og:type" content="website">
-<meta property="og:title" content="Tari Y. · Developer">
-<meta property="og:description" content="I build things that actually work. WhatsApp bots, web apps, and automation based in Nigeria.">
-<meta property="og:url" content="https://kingtroga.github.io">
-<meta property="og:image" content="https://kingtroga.github.io/avatar.jpg">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Tari Y. · Developer">
-<meta name="twitter:description" content="I build things that actually work. WhatsApp bots, web apps, and automation based in Nigeria.">
-<meta name="twitter:image" content="https://kingtroga.github.io/avatar.jpg">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="manifest" href="site.webmanifest">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Tari Y. · Developer">
+  <meta property="og:description" content="I build things that actually work. WhatsApp bots, web apps, and automation based in Nigeria.">
+  <meta property="og:url" content="https://kingtroga.github.io">
+  <meta property="og:image" content="https://kingtroga.github.io/avatar.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Tari Y. · Developer">
+  <meta name="twitter:description" content="I build things that actually work. WhatsApp bots, web apps, and automation based in Nigeria.">
+  <meta name="twitter:image" content="https://kingtroga.github.io/avatar.jpg">
+
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: ['selector', '[data-theme="dark"]'],
+      theme: {
+        extend: {
+          fontFamily: {
+            syne:  ['Syne', 'sans-serif'],
+            mono:  ['"DM Mono"', 'monospace'],
+            serif: ['"Instrument Serif"', 'serif'],
+          },
+        },
+      },
+    }
+  </script>
+
   <style>
-    /* ===== TOKENS ===== */
     [data-theme="light"] {
-      --bg:       #FAF5F7;
-      --bg2:      #F3EBF0;
-      --bg3:      #EBE0E8;
-      --text:     #12080E;
-      --muted:    #5C3D50;
-      --muted2:   #A07888;
-      --border:   rgba(244,121,154,0.22);
-      --border2:  #D8C8D2;
-      --nav-bg:   rgba(250,245,247,0.9);
-      --card-bg:  #FFFFFF;
-      --shadow:   0 2px 20px rgba(244,121,154,0.09);
-      --star:     rgba(244,121,154,0.45);
-      --calc-bg:  #FDF8FA;
+      --bg: #FAF5F7; --bg2: #F3EBF0; --card: #FFFFFF;
+      --text: #12080E; --muted: #5C3D50; --muted2: #A07888;
+      --border2: #D8C8D2; --nav-bg: rgba(250,245,247,0.9);
+      --shadow: 0 2px 20px rgba(244,121,154,0.09);
+      --star: rgba(244,121,154,0.45); --calc-bg: #FDF8FA;
     }
     [data-theme="dark"] {
-      --bg:       #080508;
-      --bg2:      #110D10;
-      --bg3:      #1C151A;
-      --text:     #F0E8EC;
-      --muted:    #A08090;
-      --muted2:   #604858;
-      --border:   rgba(244,121,154,0.18);
-      --border2:  #2C2028;
-      --nav-bg:   rgba(8,5,8,0.9);
-      --card-bg:  #130E11;
-      --shadow:   0 2px 24px rgba(0,0,0,0.45);
-      --star:     rgba(249,184,203,0.45);
-      --calc-bg:  #110D10;
-    }
-    :root {
-      --pink:      #F4799A;
-      --pink-soft: #F9B8CB;
-      --pink-dim:  rgba(244,121,154,0.1);
-      --pink-glow: rgba(244,121,154,0.22);
+      --bg: #080508; --bg2: #110D10; --card: #130E11;
+      --text: #F0E8EC; --muted: #A08090; --muted2: #604858;
+      --border2: #2C2028; --nav-bg: rgba(8,5,8,0.9);
+      --shadow: 0 2px 24px rgba(0,0,0,0.45);
+      --star: rgba(249,184,203,0.45); --calc-bg: #110D10;
     }
 
-    /* ===== RESET ===== */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Syne', sans-serif;
-      font-size: 16px;
-      line-height: 1.6;
-      overflow-x: hidden;
-      transition: background 0.3s, color 0.3s;
-    }
+    body { background: var(--bg); color: var(--text); overflow-x: hidden; transition: background .3s, color .3s; }
 
-    /* ===== NOISE ===== */
+    /* noise */
     body::before {
-      content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: .45;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      opacity: 0.45;
     }
 
-    /* ===== STARS ===== */
-    .stars { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+    /* decorative stars */
     .star {
-      position: absolute;
-      background: var(--star);
+      position: absolute; background: var(--star); opacity: var(--op, .25);
       clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
       animation: twinkle var(--dur,3s) ease-in-out infinite var(--delay,0s);
-      opacity: var(--op, 0.25);
     }
     @keyframes twinkle {
       0%,100% { opacity: var(--op,.25); transform: scale(1); }
       50%      { opacity: calc(var(--op,.25)*0.2); transform: scale(0.7); }
     }
+
+    /* bg glow */
     .bg-glow {
-      position: fixed; top: 38%; left: 50%;
-      transform: translate(-50%,-50%);
-      width: min(700px, 100vw); height: min(700px, 100vw);
-      background: radial-gradient(circle, rgba(244,121,154,0.09) 0%, transparent 68%);
+      position: fixed; top: 38%; left: 50%; transform: translate(-50%,-50%);
+      width: min(700px,100vw); height: min(700px,100vw);
+      background: radial-gradient(circle,rgba(244,121,154,.09) 0%,transparent 68%);
       pointer-events: none; z-index: 0;
       animation: breathe 7s ease-in-out infinite;
     }
@@ -118,647 +95,341 @@
       50%      { transform: translate(-50%,-50%) scale(1.1); }
     }
 
-    /* ===== NAV ===== */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 40px; height: 60px;
-      background: var(--nav-bg);
-      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-      transition: background 0.3s;
-    }
-    .nav-name {
-      font-weight: 800; font-size: 1rem; letter-spacing: -0.02em;
-      color: var(--text);
-    }
-    .nav-name span { color: var(--pink); }
-    .nav-right { display: flex; align-items: center; gap: 24px; }
-    .nav-links { display: flex; gap: 20px; list-style: none; }
-    .nav-links a {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase;
-      color: var(--muted); text-decoration: none; transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--pink); }
-    .theme-btn {
-      width: 34px; height: 34px; flex-shrink: 0;
-      border: 1px solid var(--border2); border-radius: 8px;
-      background: var(--bg2); cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.85rem; transition: border-color 0.2s, background 0.3s;
-    }
-    .theme-btn:hover { border-color: var(--pink); }
-
-    /* ===== HERO ===== */
-    .hero {
-      position: relative; z-index: 1;
-      min-height: 100vh;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      padding: 100px 24px 80px;
-      text-align: center;
-    }
-    .avatar-wrap {
-      position: relative; width: 180px; height: 180px;
-      margin: 0 auto 28px;
-      animation: float 4s ease-in-out infinite;
-    }
-    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-    .avatar-glow {
-      position: absolute; inset: -18px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(244,121,154,0.28) 0%, transparent 70%);
-      animation: breathe 4s ease-in-out infinite;
-    }
-    .avatar-ring {
-      position: absolute; inset: -4px; border-radius: 50%;
-      border: 1.5px solid rgba(244,121,154,0.38);
-      animation: spin 22s linear infinite;
-    }
+    /* avatar */
+    @keyframes float  { 0%,100% { transform: translateY(0); }   50% { transform: translateY(-10px); } }
+    @keyframes spin   { to { transform: rotate(360deg); } }
+    .avatar-float { animation: float 4s ease-in-out infinite; }
+    .avatar-glow  { animation: breathe 4s ease-in-out infinite; }
+    .avatar-ring  { animation: spin 22s linear infinite; border: 1.5px solid rgba(244,121,154,.38); }
     .avatar-ring::before {
-      content: ''; position: absolute; top: -4px; left: 50%;
-      transform: translateX(-50%);
-      width: 8px; height: 8px;
-      background: var(--pink); border-radius: 50%;
-      box-shadow: 0 0 10px var(--pink);
+      content: ''; position: absolute; top: -4px; left: 50%; transform: translateX(-50%);
+      width: 8px; height: 8px; background: #F4799A; border-radius: 50%; box-shadow: 0 0 10px #F4799A;
     }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .avatar-img {
-      width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
-      position: relative; z-index: 1; display: block;
-      border: 3px solid rgba(244,121,154,0.32);
-    }
-    .avatar-fallback {
-      width: 100%; height: 100%; border-radius: 50%;
-      background: linear-gradient(135deg,#F9B8CB,#F4799A);
-      display: none; align-items: center; justify-content: center;
-      font-weight: 800; font-size: 2.6rem; color: #fff;
-      position: relative; z-index: 1;
-      border: 3px solid rgba(244,121,154,0.32);
-    }
-    .hero-name {
-      font-weight: 800;
-      font-size: clamp(2.8rem, 8vw, 5rem);
-      letter-spacing: -0.04em; line-height: 1;
-      margin-bottom: 12px;
-    }
-    .hero-name .pink { color: var(--pink); }
-    .hero-tagline {
-      font-family: 'Instrument Serif', serif; font-style: italic;
-      font-size: clamp(1.05rem, 3vw, 1.3rem);
-      color: var(--muted); margin-bottom: 24px; line-height: 1.5;
-    }
-    .hero-tags {
-      display: flex; flex-wrap: wrap; gap: 8px;
-      justify-content: center; margin-bottom: 32px;
-      max-width: 500px;
-    }
-    .tag {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase;
-      padding: 5px 14px; border: 1px solid var(--border2); border-radius: 999px;
-      color: var(--muted); background: var(--bg2); transition: all 0.2s;
-    }
-    .tag:hover, .tag.active {
-      border-color: var(--pink); color: var(--pink); background: var(--pink-dim);
-    }
-    .hero-links { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-    .link-btn {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 11px 26px; border-radius: 8px;
-      text-decoration: none; transition: all 0.2s; display: inline-block;
-      font-weight: 700;
-    }
-    .link-btn.primary { background: var(--pink); color: #fff; }
-    .link-btn.primary:hover {
-      background: var(--pink-soft); transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(244,121,154,0.3);
-    }
-    .link-btn.ghost { border: 1px solid var(--border2); color: var(--muted); }
-    .link-btn.ghost:hover {
-      border-color: var(--pink); color: var(--pink); transform: translateY(-2px);
-    }
-    .scroll-hint {
-      position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
-      display: flex; flex-direction: column; align-items: center; gap: 6px;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.5rem; letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--muted2); animation: fadeUp 1s ease 1.5s both;
-    }
-    .scroll-hint::after {
-      content: ''; width: 1px; height: 32px;
-      background: linear-gradient(to bottom, var(--muted2), transparent);
-      animation: drip 1.5s ease-in-out infinite;
-    }
+
+    /* scroll hint */
     @keyframes drip {
       0%   { transform: scaleY(0); transform-origin: top; }
       50%  { transform: scaleY(1); transform-origin: top; }
       100% { transform: scaleY(0); transform-origin: bottom; }
     }
+    .drip-line { animation: drip 1.5s ease-in-out infinite; }
 
-    /* ===== LAYOUT ===== */
-    .container {
-      position: relative; z-index: 1;
-      max-width: 1020px; margin: 0 auto;
-      padding: 80px 24px;
-    }
-    .divider {
-      max-width: 1020px; margin: 0 auto;
-      height: 1px; position: relative; z-index: 1;
-      background: linear-gradient(90deg, transparent, var(--border2), transparent);
-    }
-    .section-kicker {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.6rem; letter-spacing: 0.26em; text-transform: uppercase;
-      color: var(--pink); margin-bottom: 12px;
-      display: flex; align-items: center; gap: 10px;
-    }
-    .section-kicker::before { content: '● ● ●'; font-size: 0.3rem; letter-spacing: 3px; }
-    .section-title {
-      font-weight: 800;
-      font-size: clamp(1.7rem, 4vw, 2.6rem);
-      letter-spacing: -0.03em; line-height: 1.1;
-      margin-bottom: 40px;
-    }
+    /* reveal */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    /* ===== SPOTIFY ===== */
-    .spotify-card {
-      background: var(--card-bg); border: 1px solid var(--border2);
-      border-radius: 16px; padding: 22px 22px 16px;
-      box-shadow: var(--shadow);
-    }
-    .spotify-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--pink); margin-bottom: 14px;
-      display: flex; align-items: center; gap: 8px;
-    }
-    .spotify-label::before { content: '♫'; font-size: 0.78rem; }
-    .spotify-embed iframe { display: block; border-radius: 10px; }
+    /* hero entrance */
+    @keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+    .hero-enter { animation: fadeUp .7s ease both; }
+    .d1{animation-delay:.1s} .d2{animation-delay:.25s} .d3{animation-delay:.4s}
+    .d4{animation-delay:.55s} .d5{animation-delay:.7s}
 
-    /* ===== PROJECTS ===== */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 14px;
-    }
-    .project-card {
-      background: var(--card-bg); border: 1px solid var(--border2);
-      border-radius: 16px; padding: 24px;
-      text-decoration: none; display: block;
-      transition: all 0.25s; position: relative; overflow: hidden;
-      box-shadow: var(--shadow);
-    }
+    /* scroll hint fade */
+    .sh-fade { animation: fadeUp 1s ease 1.5s both; }
+
+    /* project card top line */
+    .project-card { position: relative; overflow: hidden; }
     .project-card::before {
       content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(90deg, transparent, var(--pink), transparent);
-      transform: scaleX(0); transition: transform 0.4s;
-    }
-    .project-card:hover {
-      border-color: rgba(244,121,154,0.4); transform: translateY(-4px);
-      box-shadow: 0 16px 48px rgba(244,121,154,0.12);
+      background: linear-gradient(90deg,transparent,#F4799A,transparent);
+      transform: scaleX(0); transition: transform .4s;
     }
     .project-card:hover::before { transform: scaleX(1); }
-    .project-number {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--muted2); margin-bottom: 10px;
-    }
-    .project-name {
-      font-weight: 700; font-size: 1.05rem;
-      color: var(--text); margin-bottom: 8px; line-height: 1.3;
-    }
-    .project-desc {
-      font-size: 0.88rem; color: var(--muted);
-      line-height: 1.7; margin-bottom: 16px;
-    }
-    .project-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 14px; }
-    .project-tag {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.56rem; letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 3px 9px; border: 1px solid var(--border2); border-radius: 999px;
-      color: var(--muted2); background: var(--bg2);
-    }
-    .project-url {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.62rem; letter-spacing: 0.08em;
-      color: var(--pink); display: flex; align-items: center; gap: 5px;
-    }
-    .project-url::after { content: '→'; transition: transform 0.2s; }
-    .project-card:hover .project-url::after { transform: translateX(4px); }
 
-    /* ===== RATES ===== */
-    .rates-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-      gap: 14px; margin-bottom: 20px;
-    }
-    .rate-card {
-      background: var(--card-bg); border: 1px solid var(--border2);
-      border-radius: 14px; padding: 22px;
-      box-shadow: var(--shadow); transition: all 0.2s;
-    }
-    .rate-card:hover { border-color: rgba(244,121,154,0.38); transform: translateY(-3px); }
-    .rate-card.featured { border-color: var(--pink); background: var(--pink-dim); }
-    .rate-tier {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.56rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--muted2); margin-bottom: 8px;
-    }
-    .rate-name { font-weight: 700; font-size: 1rem; color: var(--text); margin-bottom: 8px; }
-    .rate-price {
-      font-weight: 800; font-size: 1.9rem;
-      letter-spacing: -0.04em; color: var(--pink); margin-bottom: 3px;
-    }
-    .rate-sub {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.64rem; color: var(--muted); margin-bottom: 12px;
-    }
-    .rate-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
-
-    .fnf-box {
-      background: var(--card-bg); border: 1px solid var(--border2);
-      border-left: 3px solid var(--pink); border-radius: 12px;
-      padding: 18px 22px;
-      display: flex; align-items: flex-start; gap: 18px;
-      box-shadow: var(--shadow); margin-bottom: 20px;
-    }
-    .fnf-badge {
-      font-weight: 800; font-size: 1.3rem;
-      color: var(--pink); white-space: nowrap; padding-top: 2px; flex-shrink: 0;
-    }
-    .fnf-text { font-size: 0.9rem; color: var(--muted); line-height: 1.75; }
-    .fnf-text strong { color: var(--text); }
-
-    /* ===== PRICE CALCULATOR ===== */
-    .calc-wrap {
-      background: var(--calc-bg); border: 1px solid var(--border2);
-      border-radius: 18px; padding: 32px;
-      box-shadow: var(--shadow); position: relative; overflow: hidden;
-    }
-    .calc-wrap::before {
-      content: ''; position: absolute; top: -40px; right: -40px;
-      width: 160px; height: 160px;
-      background: radial-gradient(circle, var(--pink-glow) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .calc-title {
-      font-weight: 700; font-size: 1.1rem;
-      margin-bottom: 6px; color: var(--text);
-    }
-    .calc-sub {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem; color: var(--muted); margin-bottom: 28px;
-    }
-    .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-    .calc-group { display: flex; flex-direction: column; gap: 8px; }
-    .calc-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--muted2); margin-bottom: 4px; display: block;
-    }
+    /* calc select arrow */
     .calc-select {
-      width: 100%;
-      background: var(--card-bg); border: 1px solid var(--border2);
-      border-radius: 8px; padding: 10px 14px;
-      font-family: 'Syne', sans-serif; font-size: 0.9rem;
-      color: var(--text); cursor: pointer;
-      transition: border-color 0.2s;
       appearance: none;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23A08090' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
       background-repeat: no-repeat; background-position: right 12px center;
-      padding-right: 32px;
     }
-    .calc-select:focus { outline: none; border-color: var(--pink); }
-    .addons-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-    .addon-item {
-      display: flex; align-items: center; gap: 10px;
-      background: var(--card-bg); border: 1px solid var(--border2);
-      border-radius: 8px; padding: 10px 12px; cursor: pointer;
-      transition: all 0.18s; user-select: none;
-    }
-    .addon-item:hover { border-color: rgba(244,121,154,0.4); }
-    .addon-item.selected { border-color: var(--pink); background: var(--pink-dim); }
-    .addon-item input[type="checkbox"] { display: none; }
-    .addon-check {
-      width: 16px; height: 16px; border-radius: 4px; flex-shrink: 0;
-      border: 1.5px solid var(--border2);
-      display: flex; align-items: center; justify-content: center;
-      transition: all 0.18s; font-size: 0.6rem;
-    }
-    .addon-item.selected .addon-check { background: var(--pink); border-color: var(--pink); color: #fff; }
+    .calc-select:focus { outline: none; border-color: #F4799A; }
+
+    /* addon toggle */
     .addon-check::after { content: ''; }
+    .addon-item.selected .addon-check { background: #F4799A; border-color: #F4799A; color: #fff; }
     .addon-item.selected .addon-check::after { content: '✓'; }
-    .addon-name { font-size: 0.82rem; font-weight: 600; color: var(--text); line-height: 1.2; }
-    .addon-price {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.62rem; color: var(--pink); margin-left: auto; flex-shrink: 0;
-    }
-    .calc-modifiers { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
-    .modifier-btn {
-      display: flex; align-items: center; gap: 8px;
-      background: var(--card-bg); border: 1px solid var(--border2);
-      border-radius: 8px; padding: 10px 14px; cursor: pointer;
-      transition: all 0.18s; user-select: none; font-size: 0.85rem;
-    }
-    .modifier-btn:hover { border-color: rgba(244,121,154,0.4); }
-    .modifier-btn.active { border-color: var(--pink); background: var(--pink-dim); color: var(--text); }
-    .modifier-btn input { display: none; }
-    .modifier-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.62rem; color: var(--muted); margin-left: 4px;
-    }
-    .modifier-btn.active .modifier-label { color: var(--pink); }
+    .addon-item.selected { border-color: #F4799A !important; background: rgba(244,121,154,.1) !important; }
 
-    .calc-result {
-      margin-top: 24px; padding: 20px 24px;
-      background: var(--text); border-radius: 12px;
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 12px;
-    }
-    .result-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
-    }
-    [data-theme="light"] .result-label { color: rgba(0,0,0,0.4); }
-    .result-price {
-      font-weight: 800; font-size: 2rem; letter-spacing: -0.04em;
-      color: var(--pink);
-    }
-    .result-note {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem; color: rgba(255,255,255,0.45);
-    }
-    [data-theme="light"] .result-note { color: rgba(0,0,0,0.38); }
-    .result-cta {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 9px 20px; border-radius: 7px;
-      background: var(--pink); color: #fff; text-decoration: none;
-      font-weight: 700; white-space: nowrap; transition: all 0.2s;
-    }
-    .result-cta:hover { background: var(--pink-soft); transform: translateY(-1px); }
+    /* modifier toggle */
+    .modifier-btn.active { border-color: #F4799A !important; background: rgba(244,121,154,.1) !important; }
+    .modifier-btn.active .mod-label { color: #F4799A; }
 
-    /* ===== ABOUT ===== */
-    .about-strip { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
-    .about-text {
-      font-family: 'Instrument Serif', serif; font-style: italic;
-      font-size: clamp(1.1rem, 2.2vw, 1.35rem); line-height: 1.75;
-      color: var(--text);
-    }
-    .about-text strong { font-style: normal; color: var(--pink); }
-    .about-body {
-      font-size: 0.93rem; color: var(--muted);
-      line-height: 1.8; margin-top: 16px;
-    }
-    .stat-list { list-style: none; }
-    .stat-item {
-      display: flex; flex-direction: column; gap: 3px;
-      padding: 16px 0; border-bottom: 1px solid var(--border2);
-    }
-    .stat-item:last-child { border-bottom: none; }
-    .stat-value {
-      font-weight: 800; font-size: 2rem;
-      letter-spacing: -0.04em; color: var(--pink);
-    }
-    .stat-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--muted);
-    }
+    /* result box bg flips with theme */
+    .calc-result { background: var(--text); }
+    [data-theme="light"] .result-label { color: rgba(0,0,0,.4); }
+    [data-theme="dark"]  .result-label { color: rgba(255,255,255,.5); }
+    [data-theme="light"] .result-note  { color: rgba(0,0,0,.38); }
+    [data-theme="dark"]  .result-note  { color: rgba(255,255,255,.45); }
 
-    /* ===== FOOTER ===== */
-    .footer-wrap {
-      position: relative; z-index: 1;
-      max-width: 1020px; margin: 0 auto;
-      padding: 40px 24px;
-      border-top: 1px solid var(--border2);
-      display: flex; justify-content: space-between;
-      align-items: center; flex-wrap: wrap; gap: 16px;
-    }
-    .footer-name { font-weight: 800; font-size: 0.95rem; }
-    .footer-name span { color: var(--pink); }
-    .footer-note {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--muted2); margin-top: 5px;
-    }
-    .footer-links { display: flex; gap: 20px; list-style: none; }
-    .footer-links a {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--muted2); text-decoration: none; transition: color 0.2s;
-    }
-    .footer-links a:hover { color: var(--pink); }
-
-    /* ===== ANIMATIONS ===== */
-    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    @keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
-    .hero-enter { animation: fadeUp 0.7s ease both; }
-    .d1{animation-delay:.1s} .d2{animation-delay:.25s} .d3{animation-delay:.4s} .d4{animation-delay:.55s} .d5{animation-delay:.7s}
-
-    /* ===== MOBILE ===== */
-    @media (max-width: 760px) {
-      nav { padding: 0 16px; }
-      .nav-links { display: none; }
-      .container { padding: 60px 16px; }
-      .about-strip { grid-template-columns: 1fr; gap: 32px; }
-      .calc-grid { grid-template-columns: 1fr; }
-      .addons-grid { grid-template-columns: 1fr; }
-      .calc-result { flex-direction: column; align-items: flex-start; }
-      .footer-wrap { flex-direction: column; align-items: flex-start; padding: 36px 16px; }
-      .hero { padding: 90px 16px 70px; }
-      .avatar-wrap { width: 150px; height: 150px; }
-    }
-    @media (max-width: 480px) {
-      .rates-grid { grid-template-columns: 1fr; }
-      .projects-grid { grid-template-columns: 1fr; }
-      .fnf-box { flex-direction: column; gap: 10px; }
-    }
+    /* divider */
+    .divider { height: 1px; background: linear-gradient(90deg,transparent,var(--border2),transparent); }
   </style>
 </head>
-<body>
 
-  <div class="stars" id="stars"></div>
+<body class="font-syne text-base leading-relaxed">
+
+  <!-- decorative stars -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden" id="stars"></div>
   <div class="bg-glow"></div>
 
   <!-- NAV -->
-  <nav>
-    <div class="nav-name">tari<span>.</span>y</div>
-    <div class="nav-right">
-      <ul class="nav-links">
-        <li><a href="#work">Work</a></li>
-        <li><a href="#rates">Rates</a></li>
-        <li><a href="#calculator">Calculator</a></li>
-        <li><a href="#about">About</a></li>
+  <nav class="fixed top-0 inset-x-0 z-50 flex items-center justify-between h-[60px] px-10 border-b backdrop-blur-xl transition-colors"
+       style="background:var(--nav-bg); border-color:rgba(244,121,154,.22);">
+    <span class="font-syne font-extrabold text-base tracking-tight" style="color:var(--text);">
+      tari<span style="color:#F4799A;">.</span>y
+    </span>
+    <div class="flex items-center gap-6">
+      <ul class="hidden md:flex gap-5 list-none m-0 p-0">
+        <li><a href="#work"       class="font-mono text-[.62rem] tracking-[.16em] uppercase no-underline transition-colors hover:text-[#F4799A]" style="color:var(--muted);">Work</a></li>
+        <li><a href="#rates"      class="font-mono text-[.62rem] tracking-[.16em] uppercase no-underline transition-colors hover:text-[#F4799A]" style="color:var(--muted);">Rates</a></li>
+        <li><a href="#calculator" class="font-mono text-[.62rem] tracking-[.16em] uppercase no-underline transition-colors hover:text-[#F4799A]" style="color:var(--muted);">Calculator</a></li>
+        <li><a href="#about"      class="font-mono text-[.62rem] tracking-[.16em] uppercase no-underline transition-colors hover:text-[#F4799A]" style="color:var(--muted);">About</a></li>
       </ul>
-      <button class="theme-btn" id="themeToggle" title="Toggle theme">🌙</button>
+      <button id="themeToggle"
+        class="w-[34px] h-[34px] flex items-center justify-center rounded-lg text-sm border cursor-pointer transition-colors hover:border-[#F4799A]"
+        style="border-color:var(--border2); background:var(--bg2);">🌙</button>
     </div>
   </nav>
 
   <!-- HERO -->
-  <div class="hero">
-    <div class="avatar-wrap hero-enter d1">
-      <div class="avatar-glow"></div>
-      <div class="avatar-ring"></div>
-      <img class="avatar-img" src="avatar.jpg" alt="Tari Y."
-        onerror="this.style.display='none';document.getElementById('af').style.display='flex'"/>
-      <div class="avatar-fallback" id="af">TY</div>
+  <div class="relative z-10 min-h-screen flex flex-col items-center justify-center px-6 pt-24 pb-20 text-center">
+
+    <div class="relative w-[180px] h-[180px] mx-auto mb-7 hero-enter d1 avatar-float">
+      <div class="absolute rounded-full avatar-glow" style="inset:-18px; background:radial-gradient(circle,rgba(244,121,154,.28) 0%,transparent 70%);"></div>
+      <div class="absolute inset-[-4px] rounded-full avatar-ring"></div>
+      <img class="w-full h-full rounded-full object-cover relative z-10 block"
+           style="border:3px solid rgba(244,121,154,.32);"
+           src="avatar.jpg" alt="Tari Y."
+           onerror="this.style.display='none';document.getElementById('af').style.display='flex'"/>
+      <div id="af" class="absolute inset-0 z-10 w-full h-full rounded-full hidden items-center justify-center font-extrabold text-[2.6rem] text-white"
+           style="background:linear-gradient(135deg,#F9B8CB,#F4799A); border:3px solid rgba(244,121,154,.32);">TY</div>
     </div>
-    <h1 class="hero-name hero-enter d2">Tari <span class="pink">Y.</span></h1>
-    <p class="hero-tagline hero-enter d3">I build things that actually work.</p>
-    <div class="hero-tags hero-enter d4">
-      <span class="tag active">Python</span>
-      <span class="tag">Django</span>
-      <span class="tag">WhatsApp Bots</span>
-      <span class="tag">Web Scraping</span>
-      <span class="tag">Automation</span>
-      <span class="tag">Nigeria 🇳🇬</span>
+
+    <h1 class="font-extrabold leading-none tracking-tighter mb-3 hero-enter d2" style="font-size:clamp(2.8rem,8vw,5rem);">
+      Tari <span style="color:#F4799A;">Y.</span>
+    </h1>
+
+    <p class="font-serif italic mb-6 hero-enter d3" style="font-size:clamp(1.05rem,3vw,1.3rem); color:var(--muted);">
+      I build things that actually work.
+    </p>
+
+    <div class="flex flex-wrap gap-2 justify-center mb-8 max-w-[500px] hero-enter d4">
+      <span class="font-mono text-[.6rem] tracking-[.14em] uppercase px-4 py-[5px] rounded-full border" style="border-color:#F4799A; color:#F4799A; background:rgba(244,121,154,.1);">Python</span>
+      <span class="font-mono text-[.6rem] tracking-[.14em] uppercase px-4 py-[5px] rounded-full border transition-all hover:border-[#F4799A] hover:text-[#F4799A]" style="border-color:var(--border2); color:var(--muted); background:var(--bg2);">Django</span>
+      <span class="font-mono text-[.6rem] tracking-[.14em] uppercase px-4 py-[5px] rounded-full border transition-all hover:border-[#F4799A] hover:text-[#F4799A]" style="border-color:var(--border2); color:var(--muted); background:var(--bg2);">WhatsApp Bots</span>
+      <span class="font-mono text-[.6rem] tracking-[.14em] uppercase px-4 py-[5px] rounded-full border transition-all hover:border-[#F4799A] hover:text-[#F4799A]" style="border-color:var(--border2); color:var(--muted); background:var(--bg2);">Web Scraping</span>
+      <span class="font-mono text-[.6rem] tracking-[.14em] uppercase px-4 py-[5px] rounded-full border transition-all hover:border-[#F4799A] hover:text-[#F4799A]" style="border-color:var(--border2); color:var(--muted); background:var(--bg2);">Automation</span>
+      <span class="font-mono text-[.6rem] tracking-[.14em] uppercase px-4 py-[5px] rounded-full border transition-all hover:border-[#F4799A] hover:text-[#F4799A]" style="border-color:var(--border2); color:var(--muted); background:var(--bg2);">Nigeria 🇳🇬</span>
     </div>
-    <div class="hero-links hero-enter d5">
-      <a href="https://linktr.ee/atary" target="_blank" class="link-btn primary">All My Links</a>
-      <a href="https://www.upwork.com/freelancers/~01cb3c617ddbf2a8a8" target="_blank" class="link-btn ghost">Hire Me on Upwork</a>
+
+    <div class="flex gap-3 justify-center flex-wrap hero-enter d5">
+      <a href="https://linktr.ee/atary" target="_blank"
+         class="font-mono font-bold text-[.7rem] tracking-[.1em] uppercase px-7 py-3 rounded-lg text-white no-underline transition-all hover:-translate-y-0.5 hover:shadow-lg"
+         style="background:#F4799A;">All My Links</a>
+      <a href="https://www.upwork.com/freelancers/~01cb3c617ddbf2a8a8" target="_blank"
+         class="font-mono font-bold text-[.7rem] tracking-[.1em] uppercase px-7 py-3 rounded-lg border no-underline transition-all hover:border-[#F4799A] hover:text-[#F4799A] hover:-translate-y-0.5"
+         style="border-color:var(--border2); color:var(--muted);">Hire Me on Upwork</a>
     </div>
-    <div class="scroll-hint">scroll</div>
+
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 sh-fade">
+      <span class="font-mono text-[.5rem] tracking-[.22em] uppercase" style="color:var(--muted2);">scroll</span>
+      <span class="w-px h-8 drip-line" style="background:linear-gradient(to bottom,var(--muted2),transparent);"></span>
+    </div>
   </div>
 
-  <div class="divider"></div>
+  <div class="divider max-w-[1020px] mx-auto"></div>
 
   <!-- SPOTIFY -->
-  <div class="container" style="padding-bottom: 0;">
-    <div class="spotify-card reveal">
-      <div class="spotify-label">Currently Listening to</div>
-      <div class="spotify-embed">
-        <iframe style="border-radius:12px"
-          src="https://open.spotify.com/embed/playlist/5MkURnbINj89omFY7fK6V9?utm_source=generator"
-          width="100%" height="352" frameBorder="0" allowfullscreen=""
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-          loading="lazy">
-        </iframe>
+  <div class="relative z-10 max-w-[1020px] mx-auto px-6 pt-20">
+    <div class="rounded-2xl p-[22px] reveal" style="background:var(--card); border:1px solid var(--border2); box-shadow:var(--shadow);">
+      <div class="font-mono text-[.58rem] tracking-[.22em] uppercase mb-3 flex items-center gap-2" style="color:#F4799A;">
+        ♫ Currently Listening to
       </div>
+      <iframe class="block rounded-xl" style="border-radius:12px;"
+        src="https://open.spotify.com/embed/playlist/5MkURnbINj89omFY7fK6V9?utm_source=generator"
+        width="100%" height="352" frameBorder="0" allowfullscreen=""
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
+      </iframe>
     </div>
   </div>
 
-  <div class="divider" style="margin-top: 80px;"></div>
+  <div class="divider max-w-[1020px] mx-auto mt-20"></div>
 
   <!-- WORK -->
-  <div class="container" id="work">
-    <div class="section-kicker reveal">Selected Work</div>
-    <h2 class="section-title reveal">Things I've built.</h2>
-    <div class="projects-grid">
+  <div class="relative z-10 max-w-[1020px] mx-auto px-6 py-20" id="work">
+    <div class="font-mono text-[.6rem] tracking-[.26em] uppercase mb-3 flex items-center gap-2.5 reveal" style="color:#F4799A;">
+      <span style="font-size:.3rem; letter-spacing:3px;">● ● ●</span> Selected Work
+    </div>
+    <h2 class="font-extrabold tracking-tight leading-[1.1] mb-10 reveal" style="font-size:clamp(1.7rem,4vw,2.6rem);">Things I've built.</h2>
 
-      <a href="https://www.everythingwallpaperinterior.com" target="_blank" class="project-card reveal">
-        <div class="project-number">01 · Live</div>
-        <div class="project-name">Everything Wallpaper Interior</div>
-        <div class="project-tags"><span class="project-tag">Django</span><span class="project-tag">E-Commerce</span><span class="project-tag">Luxury</span></div>
-        <div class="project-desc">Africa's leading wall covering brand. An online store where customers can browse products, place orders, and pay. Staff manage everything from a private page only they can see.</div>
-        <div class="project-url">everythingwallpaperinterior.com</div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+
+      <a href="https://www.everythingwallpaperinterior.com" target="_blank"
+         class="project-card rounded-2xl p-6 no-underline block transition-all hover:-translate-y-1 reveal"
+         style="background:var(--card); border:1px solid var(--border2); box-shadow:var(--shadow);">
+        <div class="font-mono text-[.58rem] tracking-[.18em] uppercase mb-2.5" style="color:var(--muted2);">01 · Live</div>
+        <div class="font-bold text-[1.05rem] mb-2 leading-snug" style="color:var(--text);">Everything Wallpaper Interior</div>
+        <div class="flex flex-wrap gap-1.5 mb-3">
+          <span class="font-mono text-[.56rem] tracking-[.1em] uppercase px-2.5 py-0.5 rounded-full border" style="border-color:var(--border2); color:var(--muted2); background:var(--bg2);">Django</span>
+          <span class="font-mono text-[.56rem] tracking-[.1em] uppercase px-2.5 py-0.5 rounded-full border" style="border-color:var(--border2); color:var(--muted2); background:var(--bg2);">E-Commerce</span>
+          <span class="font-mono text-[.56rem] tracking-[.1em] uppercase px-2.5 py-0.5 rounded-full border" style="border-color:var(--border2); color:var(--muted2); background:var(--bg2);">Luxury</span>
+        </div>
+        <div class="text-[.88rem] mb-4 leading-[1.7]" style="color:var(--muted);">Africa's leading wall covering brand. An online store where customers can browse products, place orders, and pay. Staff manage everything from a private page only they can see.</div>
+        <div class="font-mono text-[.62rem]" style="color:#F4799A;">everythingwallpaperinterior.com →</div>
       </a>
 
-      <a href="https://www.slipless.ng" target="_blank" class="project-card reveal">
-        <div class="project-number">02 · Live</div>
-        <div class="project-name">Slipless</div>
-        <div class="project-tags"><span class="project-tag">SaaS</span><span class="project-tag">WhatsApp</span><span class="project-tag">Fintech</span></div>
-        <div class="project-desc">Instead of printing a paper receipt, the shop owner just sends it straight to your WhatsApp. No printer, no paper, no stress.</div>
-        <div class="project-url">slipless.ng</div>
+      <a href="https://www.slipless.ng" target="_blank"
+         class="project-card rounded-2xl p-6 no-underline block transition-all hover:-translate-y-1 reveal"
+         style="background:var(--card); border:1px solid var(--border2); box-shadow:var(--shadow);">
+        <div class="font-mono text-[.58rem] tracking-[.18em] uppercase mb-2.5" style="color:var(--muted2);">02 · Live</div>
+        <div class="font-bold text-[1.05rem] mb-2 leading-snug" style="color:var(--text);">Slipless</div>
+        <div class="flex flex-wrap gap-1.5 mb-3">
+          <span class="font-mono text-[.56rem] tracking-[.1em] uppercase px-2.5 py-0.5 rounded-full border" style="border-color:var(--border2); color:var(--muted2); background:var(--bg2);">SaaS</span>
+          <span class="font-mono text-[.56rem] tracking-[.1em] uppercase px-2.5 py-0.5 rounded-full border" style="border-color:var(--border2); color:var(--muted2); background:var(--bg2);">WhatsApp</span>
+          <span class="font-mono text-[.56rem] tracking-[.1em] uppercase px-2.5 py-0.5 rounded-full border" style="border-color:var(--border2); color:var(--muted2); background:var(--bg2);">Fintech</span>
+        </div>
+        <div class="text-[.88rem] mb-4 leading-[1.7]" style="color:var(--muted);">Instead of printing a paper receipt, the shop owner just sends it straight to your WhatsApp. No printer, no paper, no stress.</div>
+        <div class="font-mono text-[.62rem]" style="color:#F4799A;">slipless.ng →</div>
       </a>
 
-      <a href="https://www.bulkform.app" target="_blank" class="project-card reveal">
-        <div class="project-number">03 · Live</div>
-        <div class="project-name">Bulkform</div>
-        <div class="project-tags"><span class="project-tag">SaaS</span><span class="project-tag">Automation</span><span class="project-tag">Forms</span></div>
-        <div class="project-desc">You know those forms you have to fill over and over with the same information? This fills them for you. In bulk. While you do something else.</div>
-        <div class="project-url">bulkform.app</div>
+      <a href="https://www.bulkform.app" target="_blank"
+         class="project-card rounded-2xl p-6 no-underline block transition-all hover:-translate-y-1 reveal"
+         style="background:var(--card); border:1px solid var(--border2); box-shadow:var(--shadow);">
+        <div class="font-mono text-[.58rem] tracking-[.18em] uppercase mb-2.5" style="color:var(--muted2);">03 · Live</div>
+        <div class="font-bold text-[1.05rem] mb-2 leading-snug" style="color:var(--text);">Bulkform</div>
+        <div class="flex flex-wrap gap-1.5 mb-3">
+          <span class="font-mono text-[.56rem] tracking-[.1em] uppercase px-2.5 py-0.5 rounded-full border" style="border-color:var(--border2); color:var(--muted2); background:var(--bg2);">SaaS</span>
+          <span class="font-mono text-[.56rem] tracking-[.1em] uppercase px-2.5 py-0.5 rounded-full border" style="border-color:var(--border2); color:var(--muted2); background:var(--bg2);">Automation</span>
+          <span class="font-mono text-[.56rem] tracking-[.1em] uppercase px-2.5 py-0.5 rounded-full border" style="border-color:var(--border2); color:var(--muted2); background:var(--bg2);">Forms</span>
+        </div>
+        <div class="text-[.88rem] mb-4 leading-[1.7]" style="color:var(--muted);">You know those forms you have to fill over and over with the same information? This fills them for you. In bulk. While you do something else.</div>
+        <div class="font-mono text-[.62rem]" style="color:#F4799A;">bulkform.app →</div>
       </a>
 
-      <a href="https://www.upwork.com/freelancers/~01cb3c617ddbf2a8a8" target="_blank" class="project-card reveal">
-        <div class="project-number">04 · Freelance</div>
-        <div class="project-name">Client Work</div>
-        <div class="project-tags"><span class="project-tag">Web Scraping</span><span class="project-tag">Bots</span><span class="project-tag">APIs</span></div>
-        <div class="project-desc">Various jobs for clients across the world. Bots, automations, scrapers. 9 jobs done, 4.8 average rating. I always deliver more than was asked.</div>
-        <div class="project-url">upwork.com · view profile</div>
+      <a href="https://www.upwork.com/freelancers/~01cb3c617ddbf2a8a8" target="_blank"
+         class="project-card rounded-2xl p-6 no-underline block transition-all hover:-translate-y-1 reveal"
+         style="background:var(--card); border:1px solid var(--border2); box-shadow:var(--shadow);">
+        <div class="font-mono text-[.58rem] tracking-[.18em] uppercase mb-2.5" style="color:var(--muted2);">04 · Freelance</div>
+        <div class="font-bold text-[1.05rem] mb-2 leading-snug" style="color:var(--text);">Client Work</div>
+        <div class="flex flex-wrap gap-1.5 mb-3">
+          <span class="font-mono text-[.56rem] tracking-[.1em] uppercase px-2.5 py-0.5 rounded-full border" style="border-color:var(--border2); color:var(--muted2); background:var(--bg2);">Web Scraping</span>
+          <span class="font-mono text-[.56rem] tracking-[.1em] uppercase px-2.5 py-0.5 rounded-full border" style="border-color:var(--border2); color:var(--muted2); background:var(--bg2);">Bots</span>
+          <span class="font-mono text-[.56rem] tracking-[.1em] uppercase px-2.5 py-0.5 rounded-full border" style="border-color:var(--border2); color:var(--muted2); background:var(--bg2);">APIs</span>
+        </div>
+        <div class="text-[.88rem] mb-4 leading-[1.7]" style="color:var(--muted);">Various jobs for clients across the world. Bots, automations, scrapers. 9 jobs done, 4.8 average rating. I always deliver more than was asked.</div>
+        <div class="font-mono text-[.62rem]" style="color:#F4799A;">upwork.com · view profile →</div>
       </a>
 
     </div>
   </div>
 
-  <div class="divider"></div>
+  <div class="divider max-w-[1020px] mx-auto"></div>
 
   <!-- RATES -->
-  <div class="container" id="rates">
-    <div class="section-kicker reveal">Pricing</div>
-    <h2 class="section-title reveal">What it costs to work with me.</h2>
+  <div class="relative z-10 max-w-[1020px] mx-auto px-6 py-20" id="rates">
+    <div class="font-mono text-[.6rem] tracking-[.26em] uppercase mb-3 flex items-center gap-2.5 reveal" style="color:#F4799A;">
+      <span style="font-size:.3rem; letter-spacing:3px;">● ● ●</span> Pricing
+    </div>
+    <h2 class="font-extrabold tracking-tight leading-[1.1] mb-10 reveal" style="font-size:clamp(1.7rem,4vw,2.6rem);">What it costs to work with me.</h2>
 
-    <div class="rates-grid">
-      <div class="rate-card reveal">
-        <div class="rate-tier">International · Upwork</div>
-        <div class="rate-name">Hourly Rate</div>
-        <div class="rate-price">$35</div>
-        <div class="rate-sub">per hour · USD</div>
-        <div class="rate-desc">You're outside Nigeria and need something built. We agree on the work, I track hours, you pay per hour. Simple.</div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 mb-5">
+
+      <div class="rounded-[14px] p-[22px] transition-all hover:-translate-y-0.5 reveal"
+           style="background:var(--card); border:1px solid var(--border2); box-shadow:var(--shadow);">
+        <div class="font-mono text-[.56rem] tracking-[.2em] uppercase mb-2" style="color:var(--muted2);">International · Upwork</div>
+        <div class="font-bold text-base mb-2" style="color:var(--text);">Hourly Rate</div>
+        <div class="font-extrabold text-[1.9rem] tracking-tighter leading-none mb-0.5" style="color:#F4799A;">$35</div>
+        <div class="font-mono text-[.64rem] mb-3" style="color:var(--muted);">per hour · USD</div>
+        <div class="text-[.88rem] leading-[1.7]" style="color:var(--muted);">You're outside Nigeria and need something built. We agree on the work, I track hours, you pay per hour. Simple.</div>
       </div>
-      <div class="rate-card reveal">
-        <div class="rate-tier">Tier 01 · Nigeria</div>
-        <div class="rate-name">Small Job</div>
-        <div class="rate-price">₦80K</div>
-        <div class="rate-sub">up to ₦120,000</div>
-        <div class="rate-desc">A WhatsApp bot that greets people and handles a few basic tasks. Think of it like a receptionist that never sleeps. Ready in 1 to 2 weeks.</div>
+
+      <div class="rounded-[14px] p-[22px] transition-all hover:-translate-y-0.5 reveal"
+           style="background:var(--card); border:1px solid var(--border2); box-shadow:var(--shadow);">
+        <div class="font-mono text-[.56rem] tracking-[.2em] uppercase mb-2" style="color:var(--muted2);">Tier 01 · Nigeria</div>
+        <div class="font-bold text-base mb-2" style="color:var(--text);">Small Job</div>
+        <div class="font-extrabold text-[1.9rem] tracking-tighter leading-none mb-0.5" style="color:#F4799A;">₦80K</div>
+        <div class="font-mono text-[.64rem] mb-3" style="color:var(--muted);">up to ₦120,000</div>
+        <div class="text-[.88rem] leading-[1.7]" style="color:var(--muted);">A WhatsApp bot that greets people and handles a few basic tasks. Think of it like a receptionist that never sleeps. Ready in 1 to 2 weeks.</div>
       </div>
-      <div class="rate-card reveal">
-        <div class="rate-tier">Tier 02 · Nigeria</div>
-        <div class="rate-name">Medium Job</div>
-        <div class="rate-price">₦200K</div>
-        <div class="rate-sub">up to ₦350,000</div>
-        <div class="rate-desc">A bot that remembers your customers, collects their info, and can take payments. Like a sales rep + cashier in one WhatsApp number. Ready in 2 to 3 weeks.</div>
+
+      <div class="rounded-[14px] p-[22px] transition-all hover:-translate-y-0.5 reveal"
+           style="background:var(--card); border:1px solid var(--border2); box-shadow:var(--shadow);">
+        <div class="font-mono text-[.56rem] tracking-[.2em] uppercase mb-2" style="color:var(--muted2);">Tier 02 · Nigeria</div>
+        <div class="font-bold text-base mb-2" style="color:var(--text);">Medium Job</div>
+        <div class="font-extrabold text-[1.9rem] tracking-tighter leading-none mb-0.5" style="color:#F4799A;">₦200K</div>
+        <div class="font-mono text-[.64rem] mb-3" style="color:var(--muted);">up to ₦350,000</div>
+        <div class="text-[.88rem] leading-[1.7]" style="color:var(--muted);">A bot that remembers your customers, collects their info, and can take payments. Like a sales rep + cashier in one WhatsApp number. Ready in 2 to 3 weeks.</div>
       </div>
-      <div class="rate-card featured reveal">
-        <div class="rate-tier">Tier 03 · Nigeria</div>
-        <div class="rate-name">Big Job</div>
-        <div class="rate-price">₦450K</div>
-        <div class="rate-sub">up to ₦1,000,000</div>
-        <div class="rate-desc">A full business running through WhatsApp. Different people get access to different things, you can see reports, collect money, and manage everything from one place. Ready in 4 to 9 weeks.</div>
+
+      <div class="rounded-[14px] p-[22px] transition-all hover:-translate-y-0.5 reveal"
+           style="background:rgba(244,121,154,.1); border:1px solid #F4799A; box-shadow:var(--shadow);">
+        <div class="font-mono text-[.56rem] tracking-[.2em] uppercase mb-2" style="color:var(--muted2);">Tier 03 · Nigeria</div>
+        <div class="font-bold text-base mb-2" style="color:var(--text);">Big Job</div>
+        <div class="font-extrabold text-[1.9rem] tracking-tighter leading-none mb-0.5" style="color:#F4799A;">₦450K</div>
+        <div class="font-mono text-[.64rem] mb-3" style="color:var(--muted);">up to ₦1,000,000</div>
+        <div class="text-[.88rem] leading-[1.7]" style="color:var(--muted);">A full business running through WhatsApp. Different people get access to different things, you can see reports, collect money, and manage everything from one place. Ready in 4 to 9 weeks.</div>
       </div>
+
     </div>
 
-    <div class="fnf-box reveal">
-      <div class="fnf-badge">20% OFF</div>
-      <div class="fnf-text">
-        <strong>Friends and Family Discount.</strong> If we have a personal relationship, you get 20% off the development fee.
+    <!-- F&F -->
+    <div class="rounded-xl p-5 flex items-start gap-4 flex-col sm:flex-row reveal"
+         style="background:var(--card); border:1px solid var(--border2); border-left:3px solid #F4799A; box-shadow:var(--shadow);">
+      <div class="font-extrabold text-[1.3rem] flex-shrink-0" style="color:#F4799A;">20% OFF</div>
+      <div class="text-[.9rem] leading-[1.75]" style="color:var(--muted);">
+        <strong style="color:var(--text);">Friends and Family Discount.</strong> If we have a personal relationship, you get 20% off the development fee.
         Must be agreed before work begins. One discount per person, not per project. Support packages are not discounted.
       </div>
     </div>
   </div>
 
-  <div class="divider"></div>
+  <div class="divider max-w-[1020px] mx-auto"></div>
 
   <!-- PRICE CALCULATOR -->
-  <div class="container" id="calculator">
-    <div class="section-kicker reveal">Build Your Quote</div>
-    <h2 class="section-title reveal">Project price calculator.</h2>
+  <div class="relative z-10 max-w-[1020px] mx-auto px-6 py-20" id="calculator">
+    <div class="font-mono text-[.6rem] tracking-[.26em] uppercase mb-3 flex items-center gap-2.5 reveal" style="color:#F4799A;">
+      <span style="font-size:.3rem; letter-spacing:3px;">● ● ●</span> Build Your Quote
+    </div>
+    <h2 class="font-extrabold tracking-tight leading-[1.1] mb-10 reveal" style="font-size:clamp(1.7rem,4vw,2.6rem);">Project price calculator.</h2>
 
-    <div class="calc-wrap reveal">
-      <div class="calc-title">Get an instant estimate</div>
-      <div class="calc-sub">Select your project type and add-ons · prices are in NGN</div>
+    <div class="rounded-[18px] p-8 relative overflow-hidden reveal"
+         style="background:var(--calc-bg); border:1px solid var(--border2); box-shadow:var(--shadow);">
+      <div class="absolute -top-10 -right-10 w-40 h-40 pointer-events-none"
+           style="background:radial-gradient(circle,rgba(244,121,154,.22) 0%,transparent 70%);"></div>
 
-      <div class="calc-grid">
-        <!-- BASE TIER -->
-        <div class="calc-group">
-          <label class="calc-label" for="baseTier">Base tier</label>
-          <select class="calc-select" id="baseTier">
-            <option value="80000,120000">Small job · greets people and handles basic tasks (₦80K to ₦120K)</option>
-            <option value="200000,350000">Medium job · remembers customers and takes payments (₦200K to ₦350K)</option>
-            <option value="450000,700000">Big job · full business running on WhatsApp (₦450K to ₦700K)</option>
-            <option value="800000,1000000">Very big job · everything plus AI, reports, multiple staff (₦800K to ₦1M)</option>
+      <div class="font-bold text-[1.1rem] mb-1" style="color:var(--text);">Get an instant estimate</div>
+      <div class="font-mono text-[.7rem] mb-7" style="color:var(--muted);">Select your project type and add-ons · prices are in NGN</div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+        <div class="flex flex-col gap-2">
+          <label class="font-mono text-[.6rem] tracking-[.18em] uppercase" style="color:var(--muted2);">What do you need?</label>
+          <select id="baseTier" class="calc-select rounded-lg px-3.5 py-2.5 pr-8 text-[.9rem] border cursor-pointer font-syne"
+                  style="background:var(--card); border-color:var(--border2); color:var(--text);">
+            <optgroup label="Websites">
+              <option value="80000,150000">Simple website · info pages, contact form (₦80K to ₦150K)</option>
+              <option value="200000,450000">Full website · users can sign up, log in, do things (₦200K to ₦450K)</option>
+              <option value="450000,800000">Online store · customers browse, pick, and pay (₦450K to ₦800K)</option>
+            </optgroup>
+            <optgroup label="Mobile Apps">
+              <option value="400000,700000">Mobile app · one platform, basic features (₦400K to ₦700K)</option>
+              <option value="700000,1200000">Mobile app · full product with backend and payments (₦700K to ₦1.2M)</option>
+            </optgroup>
+            <optgroup label="Bots">
+              <option value="80000,120000">WhatsApp or Telegram bot · basic replies and tasks (₦80K to ₦120K)</option>
+              <option value="200000,400000">Bot with memory · remembers customers, takes payments (₦200K to ₦400K)</option>
+              <option value="450000,1000000">Full bot platform · business runs through the bot (₦450K to ₦1M)</option>
+            </optgroup>
+            <optgroup label="Automations and Scripts">
+              <option value="50000,150000">Script or automation · does a repetitive task for you (₦50K to ₦150K)</option>
+              <option value="100000,300000">Web scraper · pulls data from websites automatically (₦100K to ₦300K)</option>
+              <option value="150000,400000">Workflow automation · connects your apps and tools (₦150K to ₦400K)</option>
+            </optgroup>
           </select>
         </div>
-
-        <!-- FAST TRACK -->
-        <div class="calc-group">
-          <label class="calc-label" for="deliveryType">Delivery speed</label>
-          <select class="calc-select" id="deliveryType">
+        <div class="flex flex-col gap-2">
+          <label class="font-mono text-[.6rem] tracking-[.18em] uppercase" style="color:var(--muted2);">Delivery speed</label>
+          <select id="deliveryType" class="calc-select rounded-lg px-3.5 py-2.5 pr-8 text-[.9rem] border cursor-pointer font-syne"
+                  style="background:var(--card); border-color:var(--border2); color:var(--text);">
             <option value="1">Standard delivery</option>
             <option value="1.175">Fast Track (+15% to 20%)</option>
           </select>
@@ -766,112 +437,141 @@
       </div>
 
       <!-- ADD-ONS -->
-      <div style="margin-top: 24px;">
-        <label class="calc-label">Add-ons</label>
-        <div class="addons-grid" id="addonsGrid">
-          <div class="addon-item" data-price="80000" onclick="toggleAddon(this)">
-            <div class="addon-check"></div>
-            <div><div class="addon-name">The bot actually thinks and answers like a human</div></div>
-            <div class="addon-price">+₦80K</div>
-          </div>
-          <div class="addon-item" data-price="50000" onclick="toggleAddon(this)">
-            <div class="addon-check"></div>
-            <div><div class="addon-name">Customers can pay money through the bot</div></div>
-            <div class="addon-price">+₦50K</div>
-          </div>
-          <div class="addon-item" data-price="115000" onclick="toggleAddon(this)">
-            <div class="addon-check"></div>
-            <div><div class="addon-name">A private page where you control everything</div></div>
-            <div class="addon-price">+₦80K to ₦150K</div>
-          </div>
-          <div class="addon-item" data-price="40000" onclick="toggleAddon(this)">
-            <div class="addon-check"></div>
-            <div><div class="addon-name">Bot confirms if a person is who they say they are (NIN / BVN)</div></div>
-            <div class="addon-price">+₦40K</div>
-          </div>
-          <div class="addon-item" data-price="40000" onclick="toggleAddon(this)">
-            <div class="addon-check"></div>
-            <div><div class="addon-name">Customers can send photos or files through the bot</div></div>
-            <div class="addon-price">+₦40K</div>
-          </div>
-          <div class="addon-item" data-price="50000" onclick="toggleAddon(this)">
-            <div class="addon-check"></div>
-            <div><div class="addon-name">Bot speaks more than one language</div></div>
-            <div class="addon-price">+₦50K</div>
-          </div>
-          <div class="addon-item" data-price="20000" onclick="toggleAddon(this)">
-            <div class="addon-check"></div>
-            <div><div class="addon-name">Set up the WhatsApp connection for you</div></div>
-            <div class="addon-price">+₦20K</div>
-          </div>
+      <label class="font-mono text-[.6rem] tracking-[.18em] uppercase block mb-2" style="color:var(--muted2);">Add-ons</label>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4">
+
+        <div class="addon-item flex items-center gap-2.5 rounded-lg px-3 py-2.5 border cursor-pointer select-none transition-all" data-price="80000" onclick="toggleAddon(this)" style="background:var(--card); border-color:var(--border2);">
+          <div class="addon-check w-4 h-4 rounded flex items-center justify-center flex-shrink-0 text-[.6rem] transition-all" style="border:1.5px solid var(--border2);"></div>
+          <div class="text-[.82rem] font-semibold" style="color:var(--text);">The bot actually thinks and answers like a human</div>
+          <div class="font-mono text-[.62rem] ml-auto flex-shrink-0" style="color:#F4799A;">+₦80K</div>
         </div>
+
+        <div class="addon-item flex items-center gap-2.5 rounded-lg px-3 py-2.5 border cursor-pointer select-none transition-all" data-price="50000" onclick="toggleAddon(this)" style="background:var(--card); border-color:var(--border2);">
+          <div class="addon-check w-4 h-4 rounded flex items-center justify-center flex-shrink-0 text-[.6rem] transition-all" style="border:1.5px solid var(--border2);"></div>
+          <div class="text-[.82rem] font-semibold" style="color:var(--text);">Customers can pay money through the bot</div>
+          <div class="font-mono text-[.62rem] ml-auto flex-shrink-0" style="color:#F4799A;">+₦50K</div>
+        </div>
+
+        <div class="addon-item flex items-center gap-2.5 rounded-lg px-3 py-2.5 border cursor-pointer select-none transition-all" data-price="115000" onclick="toggleAddon(this)" style="background:var(--card); border-color:var(--border2);">
+          <div class="addon-check w-4 h-4 rounded flex items-center justify-center flex-shrink-0 text-[.6rem] transition-all" style="border:1.5px solid var(--border2);"></div>
+          <div class="text-[.82rem] font-semibold" style="color:var(--text);">A private page where you control everything</div>
+          <div class="font-mono text-[.62rem] ml-auto flex-shrink-0" style="color:#F4799A;">+₦80K–₦150K</div>
+        </div>
+
+        <div class="addon-item flex items-center gap-2.5 rounded-lg px-3 py-2.5 border cursor-pointer select-none transition-all" data-price="40000" onclick="toggleAddon(this)" style="background:var(--card); border-color:var(--border2);">
+          <div class="addon-check w-4 h-4 rounded flex items-center justify-center flex-shrink-0 text-[.6rem] transition-all" style="border:1.5px solid var(--border2);"></div>
+          <div class="text-[.82rem] font-semibold" style="color:var(--text);">Bot confirms if a person is who they say they are (NIN / BVN)</div>
+          <div class="font-mono text-[.62rem] ml-auto flex-shrink-0" style="color:#F4799A;">+₦40K</div>
+        </div>
+
+        <div class="addon-item flex items-center gap-2.5 rounded-lg px-3 py-2.5 border cursor-pointer select-none transition-all" data-price="40000" onclick="toggleAddon(this)" style="background:var(--card); border-color:var(--border2);">
+          <div class="addon-check w-4 h-4 rounded flex items-center justify-center flex-shrink-0 text-[.6rem] transition-all" style="border:1.5px solid var(--border2);"></div>
+          <div class="text-[.82rem] font-semibold" style="color:var(--text);">Customers can send photos or files through the bot</div>
+          <div class="font-mono text-[.62rem] ml-auto flex-shrink-0" style="color:#F4799A;">+₦40K</div>
+        </div>
+
+        <div class="addon-item flex items-center gap-2.5 rounded-lg px-3 py-2.5 border cursor-pointer select-none transition-all" data-price="50000" onclick="toggleAddon(this)" style="background:var(--card); border-color:var(--border2);">
+          <div class="addon-check w-4 h-4 rounded flex items-center justify-center flex-shrink-0 text-[.6rem] transition-all" style="border:1.5px solid var(--border2);"></div>
+          <div class="text-[.82rem] font-semibold" style="color:var(--text);">Bot speaks more than one language</div>
+          <div class="font-mono text-[.62rem] ml-auto flex-shrink-0" style="color:#F4799A;">+₦50K</div>
+        </div>
+
+        <div class="addon-item flex items-center gap-2.5 rounded-lg px-3 py-2.5 border cursor-pointer select-none transition-all" data-price="20000" onclick="toggleAddon(this)" style="background:var(--card); border-color:var(--border2);">
+          <div class="addon-check w-4 h-4 rounded flex items-center justify-center flex-shrink-0 text-[.6rem] transition-all" style="border:1.5px solid var(--border2);"></div>
+          <div class="text-[.82rem] font-semibold" style="color:var(--text);">Set up the WhatsApp connection for you</div>
+          <div class="font-mono text-[.62rem] ml-auto flex-shrink-0" style="color:#F4799A;">+₦20K</div>
+        </div>
+
       </div>
 
       <!-- MODIFIERS -->
-      <div class="calc-modifiers">
-        <label class="modifier-btn" id="fnfBtn" onclick="toggleModifier(this)">
-          <input type="checkbox" id="fnfCheck"/>
-          <span>Friends and Family</span>
-          <span class="modifier-label">20% off</span>
+      <div class="flex gap-2.5 flex-wrap mt-4 mb-6">
+        <label id="fnfBtn" onclick="toggleModifier(this)"
+               class="modifier-btn flex items-center gap-2 rounded-lg px-3.5 py-2.5 border cursor-pointer select-none text-[.85rem] transition-all"
+               style="background:var(--card); border-color:var(--border2);">
+          <input type="checkbox" id="fnfCheck" class="hidden"/>
+          <span style="color:var(--text);">Friends and Family</span>
+          <span class="mod-label font-mono text-[.62rem] ml-1 transition-colors" style="color:var(--muted);">20% off</span>
         </label>
       </div>
 
       <!-- RESULT -->
-      <div class="calc-result" id="calcResult">
+      <div id="calcResult" class="calc-result rounded-xl px-6 py-5 flex items-center justify-between flex-wrap gap-3">
         <div>
-          <div class="result-label">Estimated range</div>
-          <div class="result-price" id="resultPrice">₦80K to ₦120K</div>
-          <div class="result-note" id="resultNote">Starter Bot · Standard delivery</div>
+          <div class="result-label font-mono text-[.6rem] tracking-[.2em] uppercase mb-1">Estimated range</div>
+          <div id="resultPrice" class="font-extrabold text-[2rem] tracking-tighter" style="color:#F4799A;">₦80K to ₦120K</div>
+          <div id="resultNote" class="result-note font-mono text-[.65rem] mt-0.5">WhatsApp / Telegram bot · Standard delivery</div>
         </div>
-        <a href="mailto:trogaclassicman@gmail.com" class="result-cta">Get a quote</a>
+        <a href="mailto:trogaclassicman@gmail.com"
+           class="font-mono font-bold text-[.66rem] tracking-[.1em] uppercase px-5 py-2.5 rounded-lg text-white no-underline whitespace-nowrap transition-all hover:-translate-y-0.5"
+           style="background:#F4799A;">Get a quote</a>
       </div>
     </div>
   </div>
 
-  <div class="divider"></div>
+  <div class="divider max-w-[1020px] mx-auto"></div>
 
   <!-- ABOUT -->
-  <div class="container" id="about">
-    <div class="section-kicker reveal">About</div>
-    <div class="about-strip">
+  <div class="relative z-10 max-w-[1020px] mx-auto px-6 py-20" id="about">
+    <div class="font-mono text-[.6rem] tracking-[.26em] uppercase mb-3 flex items-center gap-2.5 reveal" style="color:#F4799A;">
+      <span style="font-size:.3rem; letter-spacing:3px;">● ● ●</span> About
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
       <div>
-        <p class="about-text reveal">
-          I'm a <strong>Python developer</strong> from Nigeria. I build web apps, bots, and scrapers that solve real problems.
-          I care about what something <strong>feels like</strong>, not just what it does. A good song doesn't just have the right notes. A good film doesn't just have the right plot. And a good product doesn't just have the right features. I build with <strong>that in mind every single time.</strong>
-          I don't just ship features, I think about <strong>the whole thing.</strong>
+        <p class="font-serif italic leading-[1.75] mb-4 reveal" style="font-size:clamp(1.1rem,2.2vw,1.35rem); color:var(--text);">
+          I'm a <strong class="not-italic" style="color:#F4799A;">Python developer</strong> from Nigeria. I build web apps, bots, and scrapers that solve real problems.
+          I care about what something <strong class="not-italic" style="color:#F4799A;">feels like</strong>, not just what it does. A good song doesn't just have the right notes. A good film doesn't just have the right plot. And a good product doesn't just have the right features. I build with <strong class="not-italic" style="color:#F4799A;">that in mind every single time.</strong>
+          I don't just ship features, I think about <strong class="not-italic" style="color:#F4799A;">the whole thing.</strong>
         </p>
-        <p class="about-body reveal">
+        <p class="text-[.93rem] leading-[1.8] mb-5 reveal" style="color:var(--muted);">
           Available for freelance work. Specializing in WhatsApp bots, Django backends, and Python automation.
         </p>
-        <div class="hero-links reveal" style="justify-content:flex-start;margin-top:20px;">
-          <a href="mailto:trogaclassicman@gmail.com" class="link-btn primary">Get in touch</a>
-          <a href="https://linktr.ee/atary" target="_blank" class="link-btn ghost">Linktree</a>
+        <div class="flex gap-3 flex-wrap reveal">
+          <a href="mailto:trogaclassicman@gmail.com"
+             class="font-mono font-bold text-[.7rem] tracking-[.1em] uppercase px-7 py-3 rounded-lg text-white no-underline transition-all hover:-translate-y-0.5"
+             style="background:#F4799A;">Get in touch</a>
+          <a href="https://linktr.ee/atary" target="_blank"
+             class="font-mono font-bold text-[.7rem] tracking-[.1em] uppercase px-7 py-3 rounded-lg border no-underline transition-all hover:border-[#F4799A] hover:text-[#F4799A] hover:-translate-y-0.5"
+             style="border-color:var(--border2); color:var(--muted);">Linktree</a>
         </div>
       </div>
-      <ul class="stat-list reveal">
-        <li class="stat-item"><span class="stat-value">$35/hr</span><span class="stat-label">International Rate</span></li>
-        <li class="stat-item"><span class="stat-value">9+</span><span class="stat-label">Upwork Jobs Completed</span></li>
-        <li class="stat-item"><span class="stat-value">4.8★</span><span class="stat-label">Average Client Rating</span></li>
-        <li class="stat-item"><span class="stat-value">3</span><span class="stat-label">Live SaaS Products</span></li>
+      <ul class="list-none p-0 m-0 reveal">
+        <li class="flex flex-col gap-1 py-4 border-b" style="border-color:var(--border2);">
+          <span class="font-extrabold text-[2rem] tracking-tighter" style="color:#F4799A;">$35/hr</span>
+          <span class="font-mono text-[.6rem] tracking-[.18em] uppercase" style="color:var(--muted);">International Rate</span>
+        </li>
+        <li class="flex flex-col gap-1 py-4 border-b" style="border-color:var(--border2);">
+          <span class="font-extrabold text-[2rem] tracking-tighter" style="color:#F4799A;">9+</span>
+          <span class="font-mono text-[.6rem] tracking-[.18em] uppercase" style="color:var(--muted);">Upwork Jobs Completed</span>
+        </li>
+        <li class="flex flex-col gap-1 py-4 border-b" style="border-color:var(--border2);">
+          <span class="font-extrabold text-[2rem] tracking-tighter" style="color:#F4799A;">4.8★</span>
+          <span class="font-mono text-[.6rem] tracking-[.18em] uppercase" style="color:var(--muted);">Average Client Rating</span>
+        </li>
+        <li class="flex flex-col gap-1 py-4">
+          <span class="font-extrabold text-[2rem] tracking-tighter" style="color:#F4799A;">3</span>
+          <span class="font-mono text-[.6rem] tracking-[.18em] uppercase" style="color:var(--muted);">Live SaaS Products</span>
+        </li>
       </ul>
     </div>
   </div>
 
   <!-- FOOTER -->
-  <div class="footer-wrap">
+  <div class="relative z-10 max-w-[1020px] mx-auto px-6 py-10 flex justify-between items-center flex-wrap gap-4 border-t"
+       style="border-color:var(--border2);">
     <div>
-      <div class="footer-name">tari<span>.</span>y</div>
-      <div class="footer-note">built with intention · Nigeria 🇳🇬</div>
+      <div class="font-extrabold text-[.95rem]" style="color:var(--text);">tari<span style="color:#F4799A;">.</span>y</div>
+      <div class="font-mono text-[.58rem] tracking-[.14em] uppercase mt-1" style="color:var(--muted2);">built with intention · Nigeria 🇳🇬</div>
     </div>
-    <ul class="footer-links">
-      <li><a href="https://linktr.ee/atary" target="_blank">Linktree</a></li>
-      <li><a href="https://www.upwork.com/freelancers/~01cb3c617ddbf2a8a8" target="_blank">Upwork</a></li>
-      <li><a href="mailto:trogaclassicman@gmail.com">Email</a></li>
+    <ul class="flex gap-5 list-none p-0 m-0">
+      <li><a href="https://linktr.ee/atary" target="_blank" class="font-mono text-[.58rem] tracking-[.14em] uppercase no-underline transition-colors hover:text-[#F4799A]" style="color:var(--muted2);">Linktree</a></li>
+      <li><a href="https://www.upwork.com/freelancers/~01cb3c617ddbf2a8a8" target="_blank" class="font-mono text-[.58rem] tracking-[.14em] uppercase no-underline transition-colors hover:text-[#F4799A]" style="color:var(--muted2);">Upwork</a></li>
+      <li><a href="mailto:trogaclassicman@gmail.com" class="font-mono text-[.58rem] tracking-[.14em] uppercase no-underline transition-colors hover:text-[#F4799A]" style="color:var(--muted2);">Email</a></li>
     </ul>
   </div>
 
   <script>
-    /* ---- STARS ---- */
+    /* STARS */
     const starsEl = document.getElementById('stars');
     for (let i = 0; i < 24; i++) {
       const s = document.createElement('div');
@@ -881,20 +581,18 @@
       starsEl.appendChild(s);
     }
 
-    /* ---- THEME ---- */
+    /* THEME — always starts light */
     const html = document.documentElement;
     const btn  = document.getElementById('themeToggle');
-    const saved = localStorage.getItem('tari-theme') || 'light';
-    html.setAttribute('data-theme', saved);
-    btn.textContent = saved === 'dark' ? '☀️' : '🌙';
+    html.setAttribute('data-theme', 'light');
+    btn.textContent = '🌙';
     btn.addEventListener('click', () => {
       const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       html.setAttribute('data-theme', next);
       btn.textContent = next === 'dark' ? '☀️' : '🌙';
-      localStorage.setItem('tari-theme', next);
     });
 
-    /* ---- REVEAL ---- */
+    /* REVEAL */
     const obs = new IntersectionObserver((entries) => {
       entries.forEach((e, i) => {
         if (e.isIntersecting) {
@@ -905,22 +603,23 @@
     }, { threshold: 0.08 });
     document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-    /* ---- CALCULATOR ---- */
+    /* CALCULATOR */
     const tierNames = {
-      '80000,120000':   'Small job',
-      '200000,350000':  'Medium job',
-      '450000,700000':  'Big job',
-      '800000,1000000': 'Very big job',
+      '80000,150000':   'Simple website',
+      '200000,450000':  'Full website',
+      '450000,800000':  'Online store',
+      '400000,700000':  'Mobile app · basic',
+      '700000,1200000': 'Mobile app · full',
+      '80000,120000':   'WhatsApp / Telegram bot',
+      '200000,400000':  'Bot with memory',
+      '450000,1000000': 'Full bot platform',
+      '50000,150000':   'Script or automation',
+      '100000,300000':  'Web scraper',
+      '150000,400000':  'Workflow automation',
     };
 
-    function toggleAddon(el) {
-      el.classList.toggle('selected');
-      calcPrice();
-    }
-    function toggleModifier(el) {
-      el.classList.toggle('active');
-      calcPrice();
-    }
+    function toggleAddon(el)    { el.classList.toggle('selected'); calcPrice(); }
+    function toggleModifier(el) { el.classList.toggle('active');   calcPrice(); }
 
     function fmt(n) {
       if (n >= 1000000) return '₦' + (n/1000000).toFixed(n%1000000===0?0:1) + 'M';
@@ -929,27 +628,21 @@
     }
 
     function calcPrice() {
-      const tierVal   = document.getElementById('baseTier').value;
+      const tierVal  = document.getElementById('baseTier').value;
       const [tMin, tMax] = tierVal.split(',').map(Number);
-      const fastMult  = parseFloat(document.getElementById('deliveryType').value);
-      const isFnF     = document.getElementById('fnfBtn').classList.contains('active');
+      const fastMult = parseFloat(document.getElementById('deliveryType').value);
+      const isFnF    = document.getElementById('fnfBtn').classList.contains('active');
       const fastLabel = fastMult > 1 ? ' · Fast Track' : ' · Standard delivery';
-
       let addMin = 0, addMax = 0;
       document.querySelectorAll('.addon-item.selected').forEach(el => {
-        const p = parseInt(el.dataset.price);
-        addMin += p; addMax += p;
+        const p = parseInt(el.dataset.price); addMin += p; addMax += p;
       });
-
       let min = (tMin + addMin) * fastMult;
       let max = (tMax + addMax) * fastMult;
       if (isFnF) { min *= 0.8; max *= 0.8; }
-
-      const tierName = tierNames[tierVal];
       const fnfLabel = isFnF ? ' · F&F 20% off' : '';
-
       document.getElementById('resultPrice').textContent = fmt(Math.round(min)) + ' to ' + fmt(Math.round(max));
-      document.getElementById('resultNote').textContent  = tierName + fastLabel + fnfLabel;
+      document.getElementById('resultNote').textContent  = (tierNames[tierVal] || 'Project') + fastLabel + fnfLabel;
     }
 
     document.getElementById('baseTier').addEventListener('change', calcPrice);
