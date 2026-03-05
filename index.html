@@ -266,7 +266,7 @@
     <div class="flex gap-3 justify-center flex-wrap hero-enter d5">
       <a href="https://linktr.ee/atary" target="_blank"
          class="font-mono font-bold text-[.7rem] tracking-[.1em] uppercase px-7 py-3 rounded-lg text-white no-underline transition-all hover:-translate-y-0.5 hover:shadow-lg"
-         style="background:#F4799A;">All My Links</a>
+         style="background:#F4799A;">All My Socials</a>
       <a href="https://www.upwork.com/freelancers/~01cb3c617ddbf2a8a8" target="_blank"
          class="font-mono font-bold text-[.7rem] tracking-[.1em] uppercase px-7 py-3 rounded-lg border no-underline transition-all hover:border-[#F4799A] hover:text-[#F4799A] hover:-translate-y-0.5"
          style="border-color:var(--border2); color:var(--muted);">Hire Me on Upwork</a>
@@ -596,9 +596,9 @@
           <div id="resultPrice" class="font-extrabold text-[2rem] tracking-tighter" style="color:#F4799A;">₦80K to ₦120K</div>
           <div id="resultNote" class="result-note font-mono text-[.65rem] mt-0.5">WhatsApp / Telegram bot · Standard delivery</div>
         </div>
-        <a href="mailto:trogaclassicman@gmail.com"
-           class="font-mono font-bold text-[.66rem] tracking-[.1em] uppercase px-5 py-2.5 rounded-lg text-white no-underline whitespace-nowrap transition-all hover:-translate-y-0.5"
-           style="background:#F4799A;">Get a quote</a>
+        <a id="quoteBtn" href="#"
+        class="font-mono font-bold text-[.66rem] tracking-[.1em] uppercase px-5 py-2.5 rounded-lg text-white no-underline whitespace-nowrap transition-all hover:-translate-y-0.5"
+        style="background:#F4799A;">Get a quote</a>
       </div>
     </div>
   </div>
@@ -731,7 +731,7 @@
              style="background:#F4799A;">Get in touch</a>
           <a href="https://linktr.ee/atary" target="_blank"
              class="font-mono font-bold text-[.7rem] tracking-[.1em] uppercase px-7 py-3 rounded-lg border no-underline transition-all hover:border-[#F4799A] hover:text-[#F4799A] hover:-translate-y-0.5"
-             style="border-color:var(--border2); color:var(--muted);">Linktree</a>
+             style="border-color:var(--border2); color:var(--muted);">My Socials</a>
         </div>
       </div>
       <ul class="list-none p-0 m-0 reveal">
@@ -860,6 +860,8 @@
       const fnfLabel = isFnF ? ' · F&F 20% off' : '';
       document.getElementById('resultPrice').textContent = fmt(Math.round(min)) + ' to ' + fmt(Math.round(max));
       document.getElementById('resultNote').textContent  = (tierNames[tierVal] || 'Project') + fastLabel + fnfLabel;
+      const msg = `Hi Tari, I used the calculator on your site.\n\nProject: ${tierNames[tierVal] || 'Project'}\nDelivery: ${fastMult > 1 ? 'Fast Track' : 'Standard'}\nEstimate: ${fmt(Math.round(min))} to ${fmt(Math.round(max))}${isFnF ? '\nDiscount: Friends & Family 20% off' : ''}\n\nAddons selected:\n${[...document.querySelectorAll('.addon-item.selected')].map(el => '• ' + el.querySelector('.text-\\[\\.82rem\\]').textContent.trim()).join('\n') || 'None'}\n\nI'd like to discuss this further.`;
+      document.getElementById('quoteBtn').href = 'https://wa.me/2348156123857?text=' + encodeURIComponent(msg);
     }
 
     calcPrice();
