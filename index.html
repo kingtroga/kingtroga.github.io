@@ -163,6 +163,47 @@
 
     /* divider */
     .divider { height: 1px; background: linear-gradient(90deg,transparent,var(--border2),transparent); }
+
+
+/* custom dropdown */
+    .cd-wrap { position: relative; user-select: none; }
+    .cd-trigger {
+      width: 100%; display: flex; align-items: center; justify-content: space-between;
+      gap: 10px; padding: 10px 14px; border-radius: 10px; cursor: pointer;
+      border: 1px solid var(--border2); background: var(--card);
+      font-family: 'Syne', sans-serif; font-size: .9rem; color: var(--text);
+      transition: border-color .2s;
+    }
+    .cd-trigger:hover, .cd-wrap.open .cd-trigger { border-color: #F4799A; }
+    .cd-arrow {
+      flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+      transition: transform .2s; color: var(--muted2);
+    }
+    .cd-wrap.open .cd-arrow { transform: rotate(180deg); color: #F4799A; }
+    .cd-menu {
+      position: absolute; top: calc(100% + 6px); left: 0; right: 0; z-index: 300;
+      border-radius: 12px; border: 1px solid var(--border2); background: var(--card);
+      box-shadow: 0 16px 40px rgba(0,0,0,.15);
+      max-height: 0; overflow: hidden;
+      transition: max-height .28s ease, opacity .2s ease;
+      opacity: 0; pointer-events: none;
+    }
+    .cd-wrap.open .cd-menu { max-height: 420px; opacity: 1; pointer-events: all; overflow-y: auto; }
+    .cd-group-label {
+      font-family: 'DM Mono', monospace;
+      font-size: .52rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--muted2); padding: 10px 14px 4px;
+    }
+    .cd-option {
+      padding: 9px 14px; cursor: pointer; font-size: .88rem; line-height: 1.3;
+      color: var(--muted); transition: background .15s, color .15s;
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 8px;
+    }
+    .cd-option:hover { background: rgba(244,121,154,.1); color: var(--text); }
+    .cd-option.active { background: rgba(244,121,154,.1); color: #F4799A; }
+    .cd-check { flex-shrink: 0; font-family: 'DM Mono', monospace; font-size: .7rem; opacity: 0; margin-top: 2px; }
+    .cd-option.active .cd-check { opacity: 1; }
+    .cd-sep { height: 1px; background: var(--border2); margin: 4px 0; }
   </style>
 </head>
 
@@ -401,39 +442,92 @@
       <div class="font-mono text-[.7rem] mb-7" style="color:var(--muted);">Select your project type and add-ons · prices are in NGN</div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
-        <div class="flex flex-col gap-2">
-          <label class="font-mono text-[.6rem] tracking-[.18em] uppercase" style="color:var(--muted2);">What do you need?</label>
-          <select id="baseTier" class="calc-select rounded-lg px-3.5 py-2.5 pr-8 text-[.9rem] border cursor-pointer font-syne"
-                  style="background:var(--card); border-color:var(--border2); color:var(--text);">
-            <optgroup label="Websites">
-              <option value="80000,150000">Simple website · info pages, contact form (₦80K to ₦150K)</option>
-              <option value="200000,450000">Full website · users can sign up, log in, do things (₦200K to ₦450K)</option>
-              <option value="450000,800000">Online store · customers browse, pick, and pay (₦450K to ₦800K)</option>
-            </optgroup>
-            <optgroup label="Mobile Apps">
-              <option value="400000,700000">Mobile app · one platform, basic features (₦400K to ₦700K)</option>
-              <option value="700000,1200000">Mobile app · full product with backend and payments (₦700K to ₦1.2M)</option>
-            </optgroup>
-            <optgroup label="Bots">
-              <option value="80000,120000">WhatsApp or Telegram bot · basic replies and tasks (₦80K to ₦120K)</option>
-              <option value="200000,400000">Bot with memory · remembers customers, takes payments (₦200K to ₦400K)</option>
-              <option value="450000,1000000">Full bot platform · business runs through the bot (₦450K to ₦1M)</option>
-            </optgroup>
-            <optgroup label="Automations and Scripts">
-              <option value="50000,150000">Script or automation · does a repetitive task for you (₦50K to ₦150K)</option>
-              <option value="100000,300000">Web scraper · pulls data from websites automatically (₦100K to ₦300K)</option>
-              <option value="150000,400000">Workflow automation · connects your apps and tools (₦150K to ₦400K)</option>
-            </optgroup>
-          </select>
+      <div class="calc-group">
+        <label class="calc-label">What do you need?</label>
+        <div class="cd-wrap" id="tierWrap">
+          <div class="cd-trigger" onclick="toggleDropdown('tierWrap')">
+            <span id="tierLabel">WhatsApp or Telegram bot · basic replies and tasks</span>
+            <span class="cd-arrow">
+              <svg width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </div>
+          <div class="cd-menu">
+            <div class="cd-group-label">Websites</div>
+            <div class="cd-option" data-value="80000,150000" data-label="Simple website · info pages, contact form" onclick="selectOption('tierWrap','tierLabel',this)">
+              <span>Simple website <span style="color:var(--muted2);font-size:.8rem;">· info pages, contact form</span></span>
+              <span class="cd-check">✓</span>
+            </div>
+            <div class="cd-option" data-value="200000,450000" data-label="Full website · users can sign up, log in, do things" onclick="selectOption('tierWrap','tierLabel',this)">
+              <span>Full website <span style="color:var(--muted2);font-size:.8rem;">· users can sign up, log in, do things</span></span>
+              <span class="cd-check">✓</span>
+            </div>
+            <div class="cd-option" data-value="450000,800000" data-label="Online store · customers browse, pick, and pay" onclick="selectOption('tierWrap','tierLabel',this)">
+              <span>Online store <span style="color:var(--muted2);font-size:.8rem;">· customers browse, pick, and pay</span></span>
+              <span class="cd-check">✓</span>
+            </div>
+            <div class="cd-sep"></div>
+            <div class="cd-group-label">Mobile Apps</div>
+            <div class="cd-option" data-value="400000,700000" data-label="Mobile app · one platform, basic features" onclick="selectOption('tierWrap','tierLabel',this)">
+              <span>Mobile app · basic <span style="color:var(--muted2);font-size:.8rem;">· one platform</span></span>
+              <span class="cd-check">✓</span>
+            </div>
+            <div class="cd-option" data-value="700000,1200000" data-label="Mobile app · full product with backend and payments" onclick="selectOption('tierWrap','tierLabel',this)">
+              <span>Mobile app · full <span style="color:var(--muted2);font-size:.8rem;">· backend and payments</span></span>
+              <span class="cd-check">✓</span>
+            </div>
+            <div class="cd-sep"></div>
+            <div class="cd-group-label">Bots</div>
+            <div class="cd-option active" data-value="80000,120000" data-label="WhatsApp or Telegram bot · basic replies and tasks" onclick="selectOption('tierWrap','tierLabel',this)">
+              <span>WhatsApp or Telegram bot <span style="color:var(--muted2);font-size:.8rem;">· basic replies and tasks</span></span>
+              <span class="cd-check">✓</span>
+            </div>
+            <div class="cd-option" data-value="200000,400000" data-label="Bot with memory · remembers customers, takes payments" onclick="selectOption('tierWrap','tierLabel',this)">
+              <span>Bot with memory <span style="color:var(--muted2);font-size:.8rem;">· remembers customers, takes payments</span></span>
+              <span class="cd-check">✓</span>
+            </div>
+            <div class="cd-option" data-value="450000,1000000" data-label="Full bot platform · business runs through the bot" onclick="selectOption('tierWrap','tierLabel',this)">
+              <span>Full bot platform <span style="color:var(--muted2);font-size:.8rem;">· business runs through the bot</span></span>
+              <span class="cd-check">✓</span>
+            </div>
+            <div class="cd-sep"></div>
+            <div class="cd-group-label">Automations and Scripts</div>
+            <div class="cd-option" data-value="50000,150000" data-label="Script or automation · does a repetitive task for you" onclick="selectOption('tierWrap','tierLabel',this)">
+              <span>Script or automation <span style="color:var(--muted2);font-size:.8rem;">· does a repetitive task for you</span></span>
+              <span class="cd-check">✓</span>
+            </div>
+            <div class="cd-option" data-value="100000,300000" data-label="Web scraper · pulls data from websites automatically" onclick="selectOption('tierWrap','tierLabel',this)">
+              <span>Web scraper <span style="color:var(--muted2);font-size:.8rem;">· pulls data from websites automatically</span></span>
+              <span class="cd-check">✓</span>
+            </div>
+            <div class="cd-option" data-value="150000,400000" data-label="Workflow automation · connects your apps and tools" onclick="selectOption('tierWrap','tierLabel',this)">
+              <span>Workflow automation <span style="color:var(--muted2);font-size:.8rem;">· connects your apps and tools</span></span>
+              <span class="cd-check">✓</span>
+            </div>
+          </div>
         </div>
-        <div class="flex flex-col gap-2">
-          <label class="font-mono text-[.6rem] tracking-[.18em] uppercase" style="color:var(--muted2);">Delivery speed</label>
-          <select id="deliveryType" class="calc-select rounded-lg px-3.5 py-2.5 pr-8 text-[.9rem] border cursor-pointer font-syne"
-                  style="background:var(--card); border-color:var(--border2); color:var(--text);">
-            <option value="1">Standard delivery</option>
-            <option value="1.175">Fast Track (+15% to 20%)</option>
-          </select>
+      </div>
+
+      <div class="calc-group">
+        <label class="calc-label">Delivery speed</label>
+        <div class="cd-wrap" id="speedWrap">
+          <div class="cd-trigger" onclick="toggleDropdown('speedWrap')">
+            <span id="speedLabel">Standard delivery</span>
+            <span class="cd-arrow">
+              <svg width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </div>
+          <div class="cd-menu">
+            <div class="cd-option active" data-value="1" data-label="Standard delivery" onclick="selectOption('speedWrap','speedLabel',this)">
+              <span>Standard delivery</span>
+              <span class="cd-check">✓</span>
+            </div>
+            <div class="cd-option" data-value="1.175" data-label="Fast Track (+15% to 20%)" onclick="selectOption('speedWrap','speedLabel',this)">
+              <span>Fast Track <span style="color:var(--muted2);font-size:.8rem;">· +15% to 20%</span></span>
+              <span class="cd-check">✓</span>
+            </div>
+          </div>
         </div>
+      </div>
       </div>
 
       <!-- ADD-ONS -->
@@ -603,6 +697,24 @@
     }, { threshold: 0.08 });
     document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
+    /* DROPDOWNS */
+    function toggleDropdown(id) {
+      const wrap = document.getElementById(id);
+      const isOpen = wrap.classList.contains('open');
+      document.querySelectorAll('.cd-wrap.open').forEach(w => w.classList.remove('open'));
+      if (!isOpen) wrap.classList.add('open');
+    }
+    function selectOption(wrapId, labelId, el) {
+      document.getElementById(wrapId).querySelectorAll('.cd-option').forEach(o => o.classList.remove('active'));
+      el.classList.add('active');
+      document.getElementById(labelId).textContent = el.dataset.label;
+      document.getElementById(wrapId).classList.remove('open');
+      calcPrice();
+    }
+    document.addEventListener('click', e => {
+      if (!e.target.closest('.cd-wrap')) document.querySelectorAll('.cd-wrap.open').forEach(w => w.classList.remove('open'));
+    });
+
     /* CALCULATOR */
     const tierNames = {
       '80000,150000':   'Simple website',
@@ -628,9 +740,9 @@
     }
 
     function calcPrice() {
-      const tierVal  = document.getElementById('baseTier').value;
+      const tierVal  = document.querySelector('#tierWrap  .cd-option.active')?.dataset.value || '80000,120000';
+      const fastMult = parseFloat(document.querySelector('#speedWrap .cd-option.active')?.dataset.value || '1');
       const [tMin, tMax] = tierVal.split(',').map(Number);
-      const fastMult = parseFloat(document.getElementById('deliveryType').value);
       const isFnF    = document.getElementById('fnfBtn').classList.contains('active');
       const fastLabel = fastMult > 1 ? ' · Fast Track' : ' · Standard delivery';
       let addMin = 0, addMax = 0;
@@ -645,8 +757,6 @@
       document.getElementById('resultNote').textContent  = (tierNames[tierVal] || 'Project') + fastLabel + fnfLabel;
     }
 
-    document.getElementById('baseTier').addEventListener('change', calcPrice);
-    document.getElementById('deliveryType').addEventListener('change', calcPrice);
     calcPrice();
   </script>
 
