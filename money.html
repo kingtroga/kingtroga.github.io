@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Money System · tari.y</title>
+<meta name="description" content="A simple income split system for Nigerian freelancers. Type what you earned. Know what to do with it."/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pink: #F4799A;
+    --pink-soft: #F9B8CB;
+    --pink-dim: rgba(244,121,154,0.10);
+    --text: #12080E;
+    --muted: #5C3D50;
+    --muted2: #A07888;
+    --border: #D8C8D2;
+    --bg: #FAF5F7;
+    --bg2: #F3EBF0;
+    --green: #2a8a4a;
+    --amber: #c47c00;
+    --blue: #2a5c8a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Syne', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 40px 20px 60px;
+  }
+  .container { max-width: 580px; margin: 0 auto; }
+
+  /* NAV */
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 48px;
+  }
+  .logo { font-weight: 800; font-size: 18pt; letter-spacing: -0.03em; text-decoration: none; color: var(--text); }
+  .logo span { color: var(--pink); }
+  .nav-back {
+    font-family: 'DM Mono', monospace;
+    font-size: 8pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted2);
+    text-decoration: none;
+  }
+  .nav-back:hover { color: var(--pink); }
+
+  /* HERO */
+  .hero { margin-bottom: 36px; }
+  .hero-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 7pt;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 10px;
+  }
+  .hero-title {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 22pt;
+    line-height: 1.25;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+  .hero-sub {
+    font-size: 10pt;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 460px;
+  }
+
+  /* INPUT */
+  .input-block {
+    background: #fff;
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 22px;
+    margin-bottom: 12px;
+  }
+  .input-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 7pt;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted2);
+    margin-bottom: 10px;
+  }
+  .input-row { display: flex; align-items: center; gap: 8px; }
+  .currency { font-size: 20pt; font-weight: 700; color: var(--pink); flex-shrink: 0; }
+  input[type="number"] {
+    flex: 1;
+    font-family: 'Syne', sans-serif;
+    font-size: 22pt;
+    font-weight: 700;
+    border: none;
+    background: transparent;
+    color: var(--text);
+    outline: none;
+    width: 100%;
+  }
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; }
+  input::placeholder { color: var(--border); }
+  .preset-row { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+  .preset {
+    font-family: 'DM Mono', monospace;
+    font-size: 8pt;
+    padding: 5px 12px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    background: var(--bg2);
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .preset:hover { border-color: var(--pink); color: var(--pink); background: var(--pink-dim); }
+
+  .rule-banner {
+    background: var(--pink-dim);
+    border: 1px solid var(--pink-soft);
+    border-left: 3px solid var(--pink);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    font-size: 9pt;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+  .rule-banner strong { color: var(--text); }
+
+  /* BUCKETS */
+  .buckets { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+  .bucket {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+  .bucket:hover { box-shadow: 0 2px 16px rgba(244,121,154,0.08); }
+  .bucket-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 16px 18px 10px;
+    gap: 12px;
+  }
+  .bucket-left { flex: 1; }
+  .bucket-name { font-weight: 700; font-size: 10.5pt; color: var(--text); margin-bottom: 3px; }
+  .bucket-desc { font-size: 8.5pt; color: var(--muted); line-height: 1.55; }
+  .bucket-right { text-align: right; flex-shrink: 0; }
+  .bucket-pct {
+    font-family: 'DM Mono', monospace;
+    font-size: 8pt;
+    color: var(--muted2);
+    margin-bottom: 2px;
+  }
+  .bucket-amount {
+    font-weight: 800;
+    font-size: 17pt;
+    letter-spacing: -0.03em;
+    transition: all 0.2s;
+  }
+  .bucket-bar-wrap {
+    height: 3px;
+    background: var(--bg2);
+    margin: 0 18px 14px;
+    border-radius: 2px;
+  }
+  .bucket-bar { height: 100%; border-radius: 2px; transition: width 0.3s ease; }
+
+  .bucket.tax { border-left: 3px solid var(--muted2); }
+  .bucket.tax .bucket-amount { color: var(--muted); }
+  .bucket.tax .bucket-bar { background: var(--muted2); }
+
+  .bucket.save { border-left: 3px solid var(--green); }
+  .bucket.save .bucket-amount { color: var(--green); }
+  .bucket.save .bucket-bar { background: var(--green); }
+
+  .bucket.ops { border-left: 3px solid var(--blue); }
+  .bucket.ops .bucket-amount { color: var(--blue); }
+  .bucket.ops .bucket-bar { background: var(--blue); }
+
+  .bucket.life { border-left: 3px solid var(--pink); }
+  .bucket.life .bucket-amount { color: var(--pink); }
+  .bucket.life .bucket-bar { background: var(--pink); }
+
+  /* RULES */
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 7pt;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted2);
+    margin-bottom: 12px;
+  }
+  .rules-block {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+  .rule-item {
+    display: flex;
+    gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 9.5pt;
+    color: var(--muted);
+    line-height: 1.6;
+    align-items: flex-start;
+  }
+  .rule-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .rule-item:first-child { padding-top: 0; }
+  .rule-dot { color: var(--pink); flex-shrink: 0; font-weight: 700; margin-top: 2px; }
+  .rule-item strong { color: var(--text); }
+
+  /* WHY */
+  .why-block {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 32px;
+  }
+  .why-text {
+    font-size: 9.5pt;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .why-text strong { color: var(--text); }
+
+  /* FOOTER */
+  .footer {
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer span {
+    font-family: 'DM Mono', monospace;
+    font-size: 7pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted2);
+  }
+  .footer a {
+    font-family: 'DM Mono', monospace;
+    font-size: 7pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--pink);
+    text-decoration: none;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <nav class="nav">
+    <a href="/" class="logo">tari<span>.</span>y</a>
+    <a href="/" class="nav-back">← Back</a>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-tag">● ● ● Tool</div>
+    <div class="hero-title">The Freelancer's<br>Income Split System</div>
+    <div class="hero-sub">Type what you earned. The system tells you exactly where each naira goes — before you spend anything. Built for Nigerian freelancers who are tired of watching money disappear.</div>
+  </div>
+
+  <div class="input-block">
+    <div class="input-label">Amount received (₦)</div>
+    <div class="input-row">
+      <div class="currency">₦</div>
+      <input type="number" id="amount" placeholder="0" oninput="calculate()" />
+    </div>
+    <div class="preset-row">
+      <div class="preset" onclick="setAmount(50000)">₦50K</div>
+      <div class="preset" onclick="setAmount(100000)">₦100K</div>
+      <div class="preset" onclick="setAmount(250000)">₦250K</div>
+      <div class="preset" onclick="setAmount(500000)">₦500K</div>
+      <div class="preset" onclick="setAmount(1000000)">₦1M</div>
+    </div>
+  </div>
+
+  <div class="rule-banner">
+    <strong>The rule:</strong> Every payment gets split immediately — before food, before family, before anything. Run this the moment money lands.
+  </div>
+
+  <div class="buckets">
+
+    <div class="bucket tax">
+      <div class="bucket-inner">
+        <div class="bucket-left">
+          <div class="bucket-name">Tax · 15%</div>
+          <div class="bucket-desc">Move this to a separate account you don't touch. It belongs to the FCT-IRS — you're just holding it until filing season. The Nigeria Tax Act 2025 is not optional.</div>
+        </div>
+        <div class="bucket-right">
+          <div class="bucket-pct">15%</div>
+          <div class="bucket-amount" id="tax-amt">—</div>
+        </div>
+      </div>
+      <div class="bucket-bar-wrap"><div class="bucket-bar" id="tax-bar" style="width:15%"></div></div>
+    </div>
+
+    <div class="bucket save">
+      <div class="bucket-inner">
+        <div class="bucket-left">
+          <div class="bucket-name">Savings · 20%</div>
+          <div class="bucket-desc">A different bank. No debit card access. Piggyvest, Kuda, or Wema savings. First goal: ₦200K emergency buffer. After that, keep building.</div>
+        </div>
+        <div class="bucket-right">
+          <div class="bucket-pct">20%</div>
+          <div class="bucket-amount" id="save-amt">—</div>
+        </div>
+      </div>
+      <div class="bucket-bar-wrap"><div class="bucket-bar" id="save-bar" style="width:20%"></div></div>
+    </div>
+
+    <div class="bucket ops">
+      <div class="bucket-inner">
+        <div class="bucket-left">
+          <div class="bucket-name">Operations · 15%</div>
+          <div class="bucket-desc">Data, hosting, software, domains, tools. Work costs only. Personal expenses don't belong here — that's what the life bucket is for.</div>
+        </div>
+        <div class="bucket-right">
+          <div class="bucket-pct">15%</div>
+          <div class="bucket-amount" id="ops-amt">—</div>
+        </div>
+      </div>
+      <div class="bucket-bar-wrap"><div class="bucket-bar" id="ops-bar" style="width:15%"></div></div>
+    </div>
+
+    <div class="bucket life">
+      <div class="bucket-inner">
+        <div class="bucket-left">
+          <div class="bucket-name">Life · 50%</div>
+          <div class="bucket-desc">Food, transport, rent, family, everything personal. This is the ceiling. When it's gone, it's gone — don't borrow from the other buckets.</div>
+        </div>
+        <div class="bucket-right">
+          <div class="bucket-pct">50%</div>
+          <div class="bucket-amount" id="life-amt">—</div>
+        </div>
+      </div>
+      <div class="bucket-bar-wrap"><div class="bucket-bar" id="life-bar" style="width:50%"></div></div>
+    </div>
+
+  </div>
+
+  <div class="section-label">The Rules</div>
+  <div class="rules-block">
+    <div class="rule-item">
+      <span class="rule-dot">·</span>
+      <span><strong>Split before you spend.</strong> Not after you eat, not after you send someone money. The split happens first. Everything else comes from what remains in life.</span>
+    </div>
+    <div class="rule-item">
+      <span class="rule-dot">·</span>
+      <span><strong>Savings needs a separate bank.</strong> If your savings and spending are on the same app, one tap drains it. Different bank, no card attached — that friction is the point.</span>
+    </div>
+    <div class="rule-item">
+      <span class="rule-dot">·</span>
+      <span><strong>Tax is not your money.</strong> 15% belongs to the government. You are holding it. Spending it is borrowing from the IRS.</span>
+    </div>
+    <div class="rule-item">
+      <span class="rule-dot">·</span>
+      <span><strong>Ops is for work only.</strong> Internet, tools, subscriptions that generate income. Personal phone data for you personally comes from life.</span>
+    </div>
+    <div class="rule-item">
+      <span class="rule-dot">·</span>
+      <span><strong>When life hits zero, you wait.</strong> No loan apps. No borrowing from savings. You wait for the next payment. The buffer you're building is so you never have to wait hungry.</span>
+    </div>
+  </div>
+
+  <div class="section-label">Why 15-20-15-50</div>
+  <div class="why-block">
+    <div class="why-text">
+      Freelance income in Nigeria is irregular. Most months you're fine, some months nothing comes in. The standard budgeting advice — built for salaried workers — doesn't apply.<br><br>
+      This split is designed for that reality. <strong>50% for life</strong> is generous enough to actually live on without grinding. <strong>20% for savings</strong> builds the buffer that stops you from needing loan apps. <strong>15% for tax</strong> keeps you compliant under the new NTA 2025 rules. <strong>15% for ops</strong> keeps the work running without eating into your personal budget.<br><br>
+      The goal isn't to live small. It's to never be at zero when a big payment is late.
+    </div>
+  </div>
+
+  <footer class="footer">
+    <span>tari<span style="color:var(--pink)">.</span>y · kingtroga.github.io</span>
+    <a href="/">More tools →</a>
+  </footer>
+
+</div>
+
+<script>
+function fmt(n) {
+  if (n === 0) return '₦0';
+  if (n >= 1000000) {
+    const v = n / 1000000;
+    return '₦' + (v % 1 === 0 ? v.toFixed(0) : v.toFixed(2).replace(/0+$/, '')) + 'M';
+  }
+  if (n >= 1000) {
+    const v = n / 1000;
+    return '₦' + (v % 1 === 0 ? v.toFixed(0) : v.toFixed(1).replace(/\.0$/, '')) + 'K';
+  }
+  return '₦' + n.toLocaleString();
+}
+
+function calculate() {
+  const amount = parseFloat(document.getElementById('amount').value) || 0;
+  const buckets = [
+    { id: 'tax',  pct: 0.15 },
+    { id: 'save', pct: 0.20 },
+    { id: 'ops',  pct: 0.15 },
+    { id: 'life', pct: 0.50 },
+  ];
+  buckets.forEach(b => {
+    const el = document.getElementById(b.id + '-amt');
+    el.textContent = amount === 0 ? '—' : fmt(Math.round(amount * b.pct));
+  });
+}
+
+function setAmount(val) {
+  document.getElementById('amount').value = val;
+  calculate();
+}
+</script>
+</body>
+</html>
