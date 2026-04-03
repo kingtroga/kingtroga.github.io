@@ -1,0 +1,1655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IELTS Academic · Practice Test</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f0f13;
+    --surface: #16161d;
+    --surface2: #1e1e28;
+    --border: #2a2a3a;
+    --accent: #e8a84c;
+    --accent2: #5e8ef7;
+    --text: #e8e8f0;
+    --muted: #7a7a9a;
+    --pass: #4caf7d;
+    --fail: #e85454;
+    --reading: #5e8ef7;
+    --writing: #b86ef5;
+    --listening: #4caf7d;
+    --speaking: #e8a84c;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Lora', serif;
+    min-height: 100vh;
+    line-height: 1.7;
+  }
+
+  /* ─── SCREEN MANAGEMENT ─── */
+  .screen { display: none; }
+  .screen.active { display: block; }
+
+  /* ─── INTRO ─── */
+  #intro {
+    min-height: 100vh;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  #intro.active { display: flex; }
+
+  #intro::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(94,142,247,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  #intro::after {
+    content: '';
+    position: absolute;
+    bottom: -150px; left: -150px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(232,168,76,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .intro-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .intro-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 7vw, 72px);
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+
+  .intro-title span { color: var(--accent); font-style: italic; }
+
+  .intro-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: var(--muted);
+    text-align: center;
+    margin-bottom: 48px;
+    letter-spacing: 1px;
+  }
+
+  .sections-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    max-width: 560px;
+    width: 100%;
+    margin-bottom: 40px;
+  }
+
+  .section-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .section-card .s-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+  .section-card[data-color="reading"] .s-label { color: var(--reading); }
+  .section-card[data-color="writing"] .s-label { color: var(--writing); }
+  .section-card[data-color="listening"] .s-label { color: var(--listening); }
+  .section-card[data-color="speaking"] .s-label { color: var(--speaking); }
+
+  .section-card .s-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+  }
+
+  .section-card .s-info {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .btn-start {
+    background: var(--accent);
+    color: #0f0f13;
+    border: none;
+    padding: 16px 48px;
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-start:hover { background: #f0c06a; transform: translateY(-1px); }
+
+  .note-box {
+    margin-top: 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent2);
+    border-radius: 8px;
+    padding: 16px 20px;
+    max-width: 560px;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .note-box strong { color: var(--text); }
+
+  /* ─── TEST LAYOUT ─── */
+  #test-screen {
+    min-height: 100vh;
+    display: none;
+    flex-direction: column;
+  }
+  #test-screen.active { display: flex; }
+
+  .test-header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .test-header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+  }
+  .badge-reading { background: rgba(94,142,247,0.15); color: var(--reading); }
+  .badge-writing { background: rgba(184,110,245,0.15); color: var(--writing); }
+  .badge-listening { background: rgba(76,175,125,0.15); color: var(--listening); }
+  .badge-speaking { background: rgba(232,168,76,0.15); color: var(--speaking); }
+
+  .section-title-header {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .timer-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+  }
+
+  .timer-icon { color: var(--muted); font-size: 14px; }
+
+  #timer-display {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--accent);
+    transition: color 0.3s;
+    min-width: 60px;
+    text-align: right;
+  }
+  #timer-display.warning { color: var(--fail); }
+
+  .btn-next-section {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 8px 18px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-next-section:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ─── SECTION NAV ─── */
+  .section-nav {
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 32px;
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+  }
+
+  .sec-tab {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+    color: var(--muted);
+    background: transparent;
+  }
+  .sec-tab.active-tab { border-color: var(--border); color: var(--text); background: var(--surface); }
+  .sec-tab.done { color: var(--pass); border-color: rgba(76,175,125,0.3); }
+
+  /* ─── TEST BODY ─── */
+  .test-body {
+    flex: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 40px 32px;
+  }
+
+  /* ─── PASSAGE ─── */
+  .passage-container {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 40px;
+  }
+
+  .passage-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--reading);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .passage-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .passage-source {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+
+  .passage-text {
+    font-size: 15px;
+    line-height: 1.85;
+    color: #d8d8e8;
+  }
+
+  .passage-text p { margin-bottom: 16px; }
+
+  .para-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 500;
+    margin-right: 6px;
+  }
+
+  /* ─── QUESTIONS ─── */
+  .questions-section { margin-bottom: 48px; }
+
+  .q-section-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .q-instruction {
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+
+  .question-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 14px;
+    transition: border-color 0.2s;
+  }
+  .question-block:focus-within { border-color: var(--accent2); }
+  .question-block.answered { border-color: rgba(76,175,125,0.4); }
+
+  .q-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  .q-text {
+    font-size: 15px;
+    margin-bottom: 14px;
+    line-height: 1.6;
+  }
+
+  .options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .option-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 7px;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.15s;
+    line-height: 1.5;
+  }
+  .option-label:hover { border-color: var(--accent2); background: rgba(94,142,247,0.05); }
+  .option-label input { display: none; }
+  .option-label.selected { border-color: var(--accent2); background: rgba(94,142,247,0.1); }
+  .option-letter {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    min-width: 16px;
+    margin-top: 2px;
+  }
+
+  .tfng-options {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .tfng-btn {
+    padding: 8px 18px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .tfng-btn:hover { border-color: var(--accent2); }
+  .tfng-btn.selected-true { border-color: var(--pass); background: rgba(76,175,125,0.12); color: var(--pass); }
+  .tfng-btn.selected-false { border-color: var(--fail); background: rgba(232,84,84,0.12); color: var(--fail); }
+  .tfng-btn.selected-ng { border-color: var(--accent); background: rgba(232,168,76,0.12); color: var(--accent); }
+
+  .text-answer {
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 10px 14px;
+    color: var(--text);
+    font-family: 'Lora', serif;
+    font-size: 14px;
+    outline: none;
+    resize: none;
+    transition: border-color 0.2s;
+  }
+  .text-answer:focus { border-color: var(--accent2); }
+
+  /* ─── WRITING ─── */
+  .writing-task {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 32px;
+  }
+
+  .task-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .task-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--writing);
+    text-transform: uppercase;
+  }
+
+  .task-req {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .task-prompt {
+    font-size: 15px;
+    line-height: 1.75;
+    margin-bottom: 20px;
+    color: #d8d8e8;
+  }
+
+  .task-prompt strong { color: var(--text); }
+
+  .chart-visual {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  .chart-title-small {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+  }
+
+  .bar-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+    height: 140px;
+    padding: 0 8px;
+  }
+
+  .bar-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    flex: 1;
+  }
+
+  .bar-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+  }
+
+  .bar {
+    width: 100%;
+    border-radius: 4px 4px 0 0;
+    transition: opacity 0.2s;
+  }
+  .bar:hover { opacity: 0.8; }
+
+  .bar-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  .legend {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 12px;
+    flex-wrap: wrap;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+  }
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+  }
+
+  .writing-textarea {
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    color: var(--text);
+    font-family: 'Lora', serif;
+    font-size: 15px;
+    line-height: 1.7;
+    outline: none;
+    resize: vertical;
+    min-height: 220px;
+    transition: border-color 0.2s;
+  }
+  .writing-textarea:focus { border-color: var(--writing); }
+
+  .word-count {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    text-align: right;
+    margin-top: 8px;
+  }
+  .word-count .wc-num { color: var(--accent); }
+  .word-count .wc-ok { color: var(--pass); }
+  .word-count .wc-low { color: var(--fail); }
+
+  /* ─── LISTENING ─── */
+  .listening-note {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--listening);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 28px;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .listening-note strong { color: var(--text); }
+
+  .transcript-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 28px;
+  }
+
+  .transcript-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--listening);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .transcript-text {
+    font-size: 14px;
+    line-height: 1.85;
+    color: #d8d8e8;
+  }
+
+  .blank-input {
+    display: inline-block;
+    border: none;
+    border-bottom: 2px solid var(--accent);
+    background: transparent;
+    color: var(--accent);
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    width: 120px;
+    text-align: center;
+    outline: none;
+    padding: 0 4px;
+  }
+
+  /* ─── SPEAKING ─── */
+  .speaking-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 20px;
+  }
+
+  .speaking-part {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--speaking);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .speaking-prompt {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    line-height: 1.4;
+  }
+
+  .speaking-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+
+  .speaking-bullets li {
+    font-size: 14px;
+    color: var(--muted);
+    padding-left: 16px;
+    position: relative;
+  }
+  .speaking-bullets li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  .speaking-notes {
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 12px;
+    color: var(--text);
+    font-family: 'Lora', serif;
+    font-size: 14px;
+    outline: none;
+    resize: vertical;
+    min-height: 100px;
+    transition: border-color 0.2s;
+  }
+  .speaking-notes:focus { border-color: var(--speaking); }
+  .notes-hint {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  /* ─── RESULTS ─── */
+  #results-screen {
+    min-height: 100vh;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 20px;
+  }
+  #results-screen.active { display: flex; }
+
+  .results-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+
+  .results-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    text-align: center;
+    letter-spacing: 2px;
+    margin-bottom: 48px;
+  }
+
+  .score-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    max-width: 600px;
+    width: 100%;
+    margin-bottom: 32px;
+  }
+
+  .score-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+  }
+
+  .score-section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .score-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .score-out {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .answer-review {
+    max-width: 700px;
+    width: 100%;
+    margin-bottom: 40px;
+  }
+
+  .review-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+
+  .review-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .review-icon {
+    font-size: 16px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .review-q {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+
+  .review-detail {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+  }
+  .review-detail .your { color: var(--text); }
+  .review-detail .correct { color: var(--pass); }
+  .review-detail .wrong { color: var(--fail); }
+
+  .overall-band {
+    max-width: 600px;
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .ob-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .ob-score {
+    font-family: 'Playfair Display', serif;
+    font-size: 80px;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .ob-descriptor {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .ob-message {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+    max-width: 440px;
+    margin: 0 auto;
+  }
+
+  .btn-retry {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 14px 40px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+  }
+  .btn-retry:hover { background: var(--accent); color: #0f0f13; }
+
+  .progress-bar-container {
+    width: 100%;
+    height: 3px;
+    background: var(--border);
+    position: relative;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: var(--accent);
+    transition: width 0.4s;
+  }
+
+  @media (max-width: 600px) {
+    .sections-grid { grid-template-columns: 1fr; }
+    .score-grid { grid-template-columns: 1fr; }
+    .test-body { padding: 24px 16px; }
+    .test-header { padding: 12px 16px; }
+    .passage-container, .writing-task, .speaking-card { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════ INTRO ═══ -->
+<div id="intro" class="screen active">
+  <div class="intro-label">● ● ● Academic Module</div>
+  <h1 class="intro-title">IELTS<br><span>Practice Test</span></h1>
+  <p class="intro-sub">Full simulation · 4 sections · Timed</p>
+
+  <div class="sections-grid">
+    <div class="section-card" data-color="listening">
+      <span class="s-label">Section 1</span>
+      <span class="s-name">Listening</span>
+      <span class="s-info">~30 min · 10 questions</span>
+    </div>
+    <div class="section-card" data-color="reading">
+      <span class="s-label">Section 2</span>
+      <span class="s-name">Reading</span>
+      <span class="s-info">60 min · 13 questions</span>
+    </div>
+    <div class="section-card" data-color="writing">
+      <span class="s-label">Section 3</span>
+      <span class="s-name">Writing</span>
+      <span class="s-info">60 min · 2 tasks</span>
+    </div>
+    <div class="section-card" data-color="speaking">
+      <span class="s-label">Section 4</span>
+      <span class="s-name">Speaking</span>
+      <span class="s-info">~14 min · 3 parts</span>
+    </div>
+  </div>
+
+  <button class="btn-start" onclick="startTest()">Begin Test</button>
+
+  <div class="note-box">
+    <strong>Note on Listening:</strong> Since this is a browser-based test, the Listening section uses a written transcript instead of audio. All other sections (Reading, Writing, Speaking) are fully interactive. Your Reading score is calculated automatically. Writing and Speaking are self-assessed against IELTS band descriptors shown at the end.
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ TEST ═══ -->
+<div id="test-screen" class="screen">
+  <div class="progress-bar-container">
+    <div class="progress-bar-fill" id="progress-fill" style="width:0%"></div>
+  </div>
+
+  <div class="test-header">
+    <div class="test-header-left">
+      <span class="section-badge" id="section-badge">LISTENING</span>
+      <span class="section-title-header" id="section-title">Section 1 of 4</span>
+    </div>
+    <div class="timer-box">
+      <span class="timer-icon">⏱</span>
+      <span id="timer-display">30:00</span>
+    </div>
+    <button class="btn-next-section" id="next-btn" onclick="nextSection()">Next Section →</button>
+  </div>
+
+  <div class="section-nav">
+    <button class="sec-tab active-tab" id="tab-0" onclick="gotoSection(0)">Listening</button>
+    <button class="sec-tab" id="tab-1" onclick="gotoSection(1)">Reading</button>
+    <button class="sec-tab" id="tab-2" onclick="gotoSection(2)">Writing</button>
+    <button class="sec-tab" id="tab-3" onclick="gotoSection(3)">Speaking</button>
+  </div>
+
+  <div class="test-body" id="test-body">
+    <!-- Injected per section -->
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ RESULTS ═══ -->
+<div id="results-screen" class="screen">
+  <h1 class="results-title">Test Complete</h1>
+  <p class="results-sub">Here's how you did</p>
+
+  <div class="overall-band">
+    <div class="ob-label">Estimated Overall Band</div>
+    <div class="ob-score" id="ob-score">—</div>
+    <div class="ob-descriptor" id="ob-descriptor">—</div>
+    <div class="ob-message" id="ob-message">—</div>
+  </div>
+
+  <div class="score-grid">
+    <div class="score-card">
+      <div class="score-section-label" style="color:var(--listening)">Listening</div>
+      <div class="score-value" id="score-listening" style="color:var(--listening)">—</div>
+      <div class="score-out">/ 9.0 band</div>
+    </div>
+    <div class="score-card">
+      <div class="score-section-label" style="color:var(--reading)">Reading</div>
+      <div class="score-value" id="score-reading" style="color:var(--reading)">—</div>
+      <div class="score-out">/ 9.0 band</div>
+    </div>
+    <div class="score-card">
+      <div class="score-section-label" style="color:var(--writing)">Writing</div>
+      <div class="score-value" id="score-writing" style="color:var(--writing)">—</div>
+      <div class="score-out">Self-assessed</div>
+    </div>
+    <div class="score-card">
+      <div class="score-section-label" style="color:var(--speaking)">Speaking</div>
+      <div class="score-value" id="score-speaking" style="color:var(--speaking)">—</div>
+      <div class="score-out">Self-assessed</div>
+    </div>
+  </div>
+
+  <div class="answer-review" id="answer-review">
+    <h2 class="review-title">Reading & Listening · Answer Review</h2>
+    <div id="review-items"></div>
+  </div>
+
+  <div class="answer-review">
+    <h2 class="review-title">Writing · Band Descriptors</h2>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:24px;font-size:14px;line-height:1.9;color:var(--muted)">
+      Compare your essays against these criteria examiners use:<br><br>
+      <strong style="color:var(--text)">Task Achievement / Response</strong> — Did you fully address the task? Task 1: did you cover all key features? Task 2: did you answer all parts of the question?<br><br>
+      <strong style="color:var(--text)">Coherence & Cohesion</strong> — Is your essay logically structured? Do paragraphs flow? Did you use linking words naturally?<br><br>
+      <strong style="color:var(--text)">Lexical Resource</strong> — Did you use a varied and precise vocabulary? Did you avoid repeating the same words?<br><br>
+      <strong style="color:var(--text)">Grammatical Range & Accuracy</strong> — Did you use a mix of sentence structures? Are there many errors?<br><br>
+      <span style="color:var(--accent);font-family:'DM Mono',monospace;font-size:12px;">Band 7 target: 250+ words Task 2, clear argument, varied vocab, mostly accurate grammar, well-organised paragraphs.</span>
+    </div>
+  </div>
+
+  <button class="btn-retry" onclick="restartTest()">Restart Test</button>
+</div>
+
+<script>
+// ═══════════════════════════ DATA ═══════════════════════════
+
+const SECTIONS = ['listening', 'reading', 'writing', 'speaking'];
+const TIMERS = [30*60, 60*60, 60*60, 15*60];
+
+let currentSection = 0;
+let timerInterval = null;
+let timeLeft = 0;
+let answers = {};
+let sectionsDone = [false, false, false, false];
+
+// ─── LISTENING ANSWERS (fill-in-the-blank + MCQ) ───
+const listeningAnswers = {
+  l1: 'saturday',
+  l2: 'green valley',
+  l3: '42',
+  l4: 'c',
+  l5: 'b',
+  l6: 'a',
+  l7: 'doctor',
+  l8: 'tuesday',
+  l9: 'b',
+  l10: 'passport'
+};
+
+// ─── READING ANSWERS ───
+const readingAnswers = {
+  r1: 'true',
+  r2: 'false',
+  r3: 'not given',
+  r4: 'true',
+  r5: 'false',
+  r6: 'not given',
+  r7: 'b',
+  r8: 'c',
+  r9: 'a',
+  r10: 'd',
+  r11: 'deforestation',
+  r12: 'carbon',
+  r13: 'indigenous'
+};
+
+// ═══════════════════════════ SECTIONS HTML ═══════════════════
+
+function getListeningHTML() {
+  return `
+    <div class="listening-note">
+      <strong>Instructions:</strong> In the real IELTS, you would listen to a recording. For this practice, read the transcript carefully below and answer the questions. You have <strong>30 minutes</strong>. Questions 1–3 and 7–8, 10 are fill-in-the-blank. Questions 4–6 and 9 are multiple choice.
+    </div>
+
+    <div class="transcript-box">
+      <div class="transcript-label">▶ Transcript · Section 1 — Social Conversation</div>
+      <div class="transcript-text">
+        <p><strong>Officer:</strong> Good morning, welcome to Riverside Community Centre. How can I help you?</p>
+        <p><strong>Laura:</strong> Hi! I'd like to register for the weekend fitness classes. I heard they run on Saturdays and Sundays?</p>
+        <p><strong>Officer:</strong> That's right. The main classes are on <strong>Saturday</strong> mornings. Sunday is optional top-up. Which location are you closest to?</p>
+        <p><strong>Laura:</strong> I'm near the <strong>Green Valley</strong> branch — the one by the park.</p>
+        <p><strong>Officer:</strong> Perfect. Can I take your membership number?</p>
+        <p><strong>Laura:</strong> Yes, it's <strong>42</strong>-B-seven.</p>
+        <p><strong>Officer:</strong> Great. Now, the beginner package includes yoga, pilates, and swimming. The intermediate adds cardio boot camp. Which would suit you?</p>
+        <p><strong>Laura:</strong> I've been doing yoga for two years, so I'd say intermediate — but I'd prefer to skip the swimming. Is that an option?</p>
+        <p><strong>Officer:</strong> Absolutely. You can customise. There's also a nutrition workshop every second Tuesday. Would you like that added?</p>
+        <p><strong>Laura:</strong> That sounds great! What do I need to bring to the first session?</p>
+        <p><strong>Officer:</strong> Just a <strong>passport</strong> or national ID for identity verification, your kit, and a water bottle.</p>
+        <p><strong>Laura:</strong> One more thing — I have a recurring knee issue. Is there a medical contact on site?</p>
+        <p><strong>Officer:</strong> Yes, there's a resident <strong>doctor</strong> on call during all weekend sessions.</p>
+        <p><strong>Laura:</strong> Brilliant, I'll sign up. My first session would be this coming <strong>Tuesday</strong> workshop then?</p>
+        <p><strong>Officer:</strong> The workshop, yes. The main fitness sessions start <strong>Saturday</strong>.</p>
+      </div>
+    </div>
+
+    <div class="questions-section">
+      <div class="q-section-title">Questions 1–3 · Fill in the blanks (one word or number each)</div>
+      <p class="q-instruction">Write NO MORE THAN ONE WORD OR A NUMBER for each answer.</p>
+
+      ${makeBlankQ('l1','1','The fitness classes are held on __________ mornings.')}
+      ${makeBlankQ('l2','2','Laura is closest to the __________ branch.')}
+      ${makeBlankQ('l3','3','Laura\'s membership number begins with __________.')}
+    </div>
+
+    <div class="questions-section">
+      <div class="q-section-title">Questions 4–6 · Multiple Choice</div>
+      <p class="q-instruction">Choose the correct letter, A, B, or C.</p>
+
+      ${makeMCQ('l4','4','Which fitness level does Laura choose?',[
+        ['A','Beginner — yoga and pilates only'],
+        ['B','Advanced — all classes including swimming'],
+        ['C','Intermediate — without swimming']
+      ])}
+      ${makeMCQ('l5','5','The nutrition workshop runs every:',[
+        ['A','Saturday morning'],
+        ['B','Second Tuesday'],
+        ['C','Sunday afternoon']
+      ])}
+      ${makeMCQ('l6','6','What is the primary reason Laura mentions her knee issue?',[
+        ['A','To ask about medical support available on site'],
+        ['B','To request a refund if she cannot attend'],
+        ['C','To get a doctor\'s note before registering']
+      ])}
+    </div>
+
+    <div class="questions-section">
+      <div class="q-section-title">Questions 7–8, 10 · Fill in the blanks</div>
+      <p class="q-instruction">Write NO MORE THAN ONE WORD for each answer.</p>
+
+      ${makeBlankQ('l7','7','A resident __________ is available during weekend sessions.')}
+      ${makeBlankQ('l8','8','The nutrition workshop takes place on __________.')}
+      ${makeBlankQ('l10','10','Laura needs to bring a __________ for identity verification.')}
+    </div>
+
+    <div class="questions-section">
+      <div class="q-section-title">Question 9 · Multiple Choice</div>
+      ${makeMCQ('l9','9','When do Laura\'s main fitness sessions start?',[
+        ['A','Tuesday'],
+        ['B','Saturday'],
+        ['C','Sunday']
+      ])}
+    </div>
+  `;
+}
+
+function getReadingHTML() {
+  return `
+    <div class="passage-container">
+      <div class="passage-tag">Reading Passage 1</div>
+      <div class="passage-title">The Hidden Cost of Deforestation</div>
+      <div class="passage-source">Adapted from Environmental Science Quarterly, 2023</div>
+      <div class="passage-text">
+        <p><span class="para-label">A</span>For centuries, forests have been cleared to make way for agricultural land, urban development, and industrial expansion. While the immediate economic benefits of deforestation are well documented, the long-term consequences for ecosystems, climate, and human communities are only now being fully understood. Scientists estimate that over 15 billion trees are cut down globally each year, a rate that has accelerated since the mid-twentieth century.</p>
+        <p><span class="para-label">B</span>One of the most significant effects of deforestation is its impact on the global carbon cycle. Trees absorb carbon dioxide from the atmosphere through photosynthesis, storing it in their wood, leaves, and roots. When forests are cleared — whether by burning or logging — this stored carbon is released back into the atmosphere, contributing to greenhouse gas concentrations. Tropical rainforests alone store approximately 250 billion tonnes of carbon, making their preservation critical in the fight against climate change.</p>
+        <p><span class="para-label">C</span>Beyond climate, deforestation threatens biodiversity on a staggering scale. The Amazon Basin, for instance, hosts an estimated ten percent of all species on Earth, many of which have not yet been scientifically described. As forest habitats shrink, species are forced into smaller and more fragmented territories, increasing competition for resources and reducing genetic diversity. Extinction rates in heavily deforested regions are estimated to be one thousand times higher than natural background rates.</p>
+        <p><span class="para-label">D</span>The effects extend directly to human populations as well. Indigenous communities whose identities and livelihoods are inseparable from forest environments face particular vulnerability. In many regions, the clearing of forests strips away not only the material resources these communities depend on — food, medicine, building materials — but also their cultural heritage and traditional knowledge. International conservation bodies have increasingly recognised that protecting forests requires securing the land rights of indigenous peoples, whose stewardship over centuries has maintained forest health far better than external management.</p>
+        <p><span class="para-label">E</span>Efforts to reverse deforestation have taken several forms. Large-scale reforestation programmes, often funded by international organisations, aim to replant cleared land with native species. Critics, however, point out that replanting monocultures — single-species plantations — offers little of the ecological richness of old-growth forest. A more nuanced approach, now advocated by many ecologists, involves allowing degraded land to regenerate naturally by simply removing human pressure, a process called passive rewilding. Early results from passive rewilding projects in Costa Rica and parts of China have been encouraging, with biodiversity recovering at rates that outpace active planting schemes.</p>
+        <p><span class="para-label">F</span>The political economy of deforestation presents perhaps the greatest obstacle to solutions. In countries where forests remain, they are often located in regions of significant poverty. For local populations, clearing land for agriculture is frequently a rational economic decision, even where long-term environmental costs are recognised. Effective policy, therefore, must offer viable economic alternatives — payments for ecosystem services, sustainable forestry certification, and ecotourism development among them. Without addressing the economic drivers, conservation efforts risk displacing deforestation rather than ending it.</p>
+      </div>
+    </div>
+
+    <div class="questions-section">
+      <div class="q-section-title">Questions 1–6 · True / False / Not Given</div>
+      <p class="q-instruction">Do the following statements agree with the information in the passage? Select <strong>TRUE</strong> if the statement agrees, <strong>FALSE</strong> if it contradicts the passage, or <strong>NOT GIVEN</strong> if there is no information about this.</p>
+
+      ${makeTFNG('r1','1','More than 15 billion trees are felled globally every year.')}
+      ${makeTFNG('r2','2','The Amazon Basin contains all species that have been scientifically identified.')}
+      ${makeTFNG('r3','3','Indigenous communities in forested regions receive government compensation for land loss.')}
+      ${makeTFNG('r4','4','Passive rewilding involves reducing human interference rather than active planting.')}
+      ${makeTFNG('r5','5','Monoculture plantations are praised by most ecologists for their ecological richness.')}
+      ${makeTFNG('r6','6','Costa Rica has the world\'s highest rate of deforestation reversal.')}
+    </div>
+
+    <div class="questions-section">
+      <div class="q-section-title">Questions 7–10 · Multiple Choice</div>
+      <p class="q-instruction">Choose the correct letter, A, B, C, or D.</p>
+
+      ${makeMCQ('r7','7','According to paragraph B, why is the preservation of tropical rainforests considered critical?',[
+        ['A','They contain most of the world\'s undiscovered plant species'],
+        ['B','They store enormous quantities of carbon that would otherwise enter the atmosphere'],
+        ['C','They regulate rainfall patterns across all major continents'],
+        ['D','They produce the majority of the world\'s oxygen supply']
+      ])}
+      ${makeMCQ('r8','8','What does the passage suggest is a weakness of large-scale reforestation programmes?',[
+        ['A','They are too expensive for developing nations to sustain'],
+        ['B','They often use non-native species that harm local wildlife'],
+        ['C','Single-species plantations do not replicate the ecological complexity of natural forests'],
+        ['D','They tend to accelerate soil erosion rather than prevent it']
+      ])}
+      ${makeMCQ('r9','9','The author implies that solving deforestation ultimately requires:',[
+        ['A','Addressing the economic conditions that make forest clearance attractive to local people'],
+        ['B','Banning all forms of commercial logging globally'],
+        ['C','Transferring forest management entirely to indigenous communities'],
+        ['D','Establishing protected national parks in all forested regions']
+      ])}
+      ${makeMCQ('r10','10','Which of the following best describes the overall argument of the passage?',[
+        ['A','Deforestation is primarily a developing-world problem that requires foreign aid'],
+        ['B','The economic benefits of deforestation outweigh the environmental costs in the short term'],
+        ['C','Deforestation cannot be reversed without completely removing human populations from forest areas'],
+        ['D','Deforestation has complex, interconnected consequences and solutions must address multiple drivers simultaneously']
+      ])}
+    </div>
+
+    <div class="questions-section">
+      <div class="q-section-title">Questions 11–13 · Summary Completion</div>
+      <p class="q-instruction">Complete the summary below. Choose <strong>NO MORE THAN ONE WORD</strong> from the passage for each answer.</p>
+      <div class="question-block" id="qblock-r11">
+        <div class="q-num">QUESTIONS 11–13</div>
+        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:18px;font-size:14px;line-height:2.0;color:#d8d8e8">
+          The clearing of forests contributes to climate change partly because of the effects of <input class="blank-input" id="r11" oninput="handleBlank('r11')" placeholder="(11)"> on carbon storage. It also causes severe biodiversity loss by releasing <input class="blank-input" id="r12" oninput="handleBlank('r12')" placeholder="(12)"> stored in trees back into the atmosphere. The passage also highlights that <input class="blank-input" id="r13" oninput="handleBlank('r13')" placeholder="(13)"> peoples have historically maintained forest health through centuries of responsible stewardship.
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function getWritingHTML() {
+  return `
+    <div class="writing-task">
+      <div class="task-header">
+        <span class="task-label">Task 1 · Academic</span>
+        <span class="task-req">Minimum 150 words · 20 minutes recommended</span>
+      </div>
+      <div class="task-prompt">
+        The bar chart below shows the <strong>percentage of urban households with internet access</strong> in four countries (Nigeria, Brazil, South Korea, Germany) across three years: <strong>2010, 2015, and 2020</strong>.
+        <br><br>Summarise the information by selecting and reporting the main features, and make comparisons where relevant.
+      </div>
+
+      <div class="chart-visual">
+        <div class="chart-title-small">% OF URBAN HOUSEHOLDS WITH INTERNET ACCESS</div>
+        <div class="bar-chart">
+          <!-- Nigeria -->
+          <div class="bar-group">
+            <span class="bar-value">18%</span>
+            <div class="bar" style="height:25px;background:#4caf7d"></div>
+            <div class="bar" style="height:40px;background:#5e8ef7"></div>
+            <div class="bar" style="height:65px;background:#e8a84c"></div>
+            <div class="bar-label">Nigeria</div>
+          </div>
+          <!-- Brazil -->
+          <div class="bar-group">
+            <span class="bar-value">38%</span>
+            <div class="bar" style="height:53px;background:#4caf7d"></div>
+            <div class="bar" style="height:75px;background:#5e8ef7"></div>
+            <div class="bar" style="height:90px;background:#e8a84c"></div>
+            <div class="bar-label">Brazil</div>
+          </div>
+          <!-- South Korea -->
+          <div class="bar-group">
+            <span class="bar-value">95%</span>
+            <div class="bar" style="height:95px;background:#4caf7d"></div>
+            <div class="bar" style="height:110px;background:#5e8ef7"></div>
+            <div class="bar" style="height:130px;background:#e8a84c"></div>
+            <div class="bar-label">S. Korea</div>
+          </div>
+          <!-- Germany -->
+          <div class="bar-group">
+            <span class="bar-value">90%</span>
+            <div class="bar" style="height:102px;background:#4caf7d"></div>
+            <div class="bar" style="height:115px;background:#5e8ef7"></div>
+            <div class="bar" style="height:125px;background:#e8a84c"></div>
+            <div class="bar-label">Germany</div>
+          </div>
+        </div>
+        <div class="legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#4caf7d"></div>2010</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#5e8ef7"></div>2015</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#e8a84c"></div>2020</div>
+        </div>
+        <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);text-align:center;margin-top:12px">
+          Key data: Nigeria 18/28/42% · Brazil 38/55/72% · S.Korea 68/88/97% · Germany 74/87/94%
+        </div>
+      </div>
+
+      <textarea class="writing-textarea" id="task1-text" placeholder="Write your response here..." oninput="updateWordCount('task1-text','wc1')"></textarea>
+      <div class="word-count">Words: <span id="wc1" class="wc-num">0</span> <span id="wc1-status">(minimum 150)</span></div>
+    </div>
+
+    <div class="writing-task">
+      <div class="task-header">
+        <span class="task-label">Task 2 · Academic Essay</span>
+        <span class="task-req">Minimum 250 words · 40 minutes recommended</span>
+      </div>
+      <div class="task-prompt">
+        <em>Some people argue that universities should focus on producing graduates with practical, job-ready skills, while others believe the primary purpose of higher education is to develop critical thinking and intellectual ability, regardless of immediate employment value.</em>
+        <br><br><strong>Discuss both views and give your own opinion.</strong>
+      </div>
+
+      <textarea class="writing-textarea" id="task2-text" placeholder="Write your essay here. Include an introduction, body paragraphs covering both views, and a conclusion with your opinion..." style="min-height:320px" oninput="updateWordCount('task2-text','wc2')"></textarea>
+      <div class="word-count">Words: <span id="wc2" class="wc-num">0</span> <span id="wc2-status">(minimum 250)</span></div>
+    </div>
+  `;
+}
+
+function getSpeakingHTML() {
+  return `
+    <div class="listening-note">
+      <strong>Speaking section:</strong> In the real IELTS Speaking test, you speak face-to-face with an examiner for 11–14 minutes. Here, read each prompt, think out loud or speak aloud, then write brief notes on what you said. This helps you identify gaps in your fluency and vocabulary. A self-assessment guide is provided at the end.
+    </div>
+
+    <div class="speaking-card">
+      <div class="speaking-part">Part 1 · Introduction & Interview (~4 minutes)</div>
+      <div class="speaking-prompt">The examiner will ask you general questions about familiar topics.</div>
+      <ul class="speaking-bullets">
+        <li>Do you work or are you a student? Tell me about what you do.</li>
+        <li>Do you enjoy using technology in your daily life? Why?</li>
+        <li>What kind of music do you enjoy, and why?</li>
+        <li>How do you usually spend your weekends?</li>
+        <li>Is there a skill you have always wanted to learn? Why?</li>
+      </ul>
+      <div class="notes-hint">Your notes (key points, vocabulary you used):</div>
+      <textarea class="speaking-notes" id="spk1" placeholder="Note your ideas here — vocabulary you used, topics you covered, any moments you struggled..."></textarea>
+    </div>
+
+    <div class="speaking-card">
+      <div class="speaking-part">Part 2 · Individual Long Turn (~2 minutes speaking + 1 min prep)</div>
+      <div class="speaking-prompt">Describe a time when you had to learn something new quickly.</div>
+      <ul class="speaking-bullets">
+        <li>What you had to learn</li>
+        <li>Why you needed to learn it quickly</li>
+        <li>How you went about learning it</li>
+        <li>And explain how you felt about the experience</li>
+      </ul>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:12px">You have 1 minute to prepare. Speak for up to 2 minutes.</p>
+      <div class="notes-hint">Preparation notes + reflection:</div>
+      <textarea class="speaking-notes" id="spk2" placeholder="Jot your preparation notes, then after speaking, reflect — did you hit all the bullet points? Did you speak for close to 2 minutes?"></textarea>
+    </div>
+
+    <div class="speaking-card">
+      <div class="speaking-part">Part 3 · Two-way Discussion (~4 minutes)</div>
+      <div class="speaking-prompt">Let's talk about education and learning in society.</div>
+      <ul class="speaking-bullets">
+        <li>Why do you think some people struggle to learn new skills as adults compared to children?</li>
+        <li>How has technology changed the way people learn in recent years?</li>
+        <li>Do you think formal education systems adequately prepare young people for the modern workplace? Why or why not?</li>
+        <li>Some people believe self-directed learning is more effective than classroom learning. What is your view?</li>
+      </ul>
+      <div class="notes-hint">Your answers / vocabulary used:</div>
+      <textarea class="speaking-notes" id="spk3" placeholder="Write key arguments you made, vocabulary you used, any ideas you found difficult to express in English..."></textarea>
+    </div>
+
+    <div class="speaking-card" style="border-color:rgba(232,168,76,0.3)">
+      <div class="speaking-part" style="color:var(--accent)">Self-Assessment · Band Descriptors</div>
+      <div style="font-size:14px;line-height:1.9;color:var(--muted)">
+        Rate yourself 1–9 on each dimension:<br><br>
+        <strong style="color:var(--text)">Fluency & Coherence</strong> — Did you speak without long pauses? Did your ideas connect logically?<br>
+        <strong style="color:var(--text)">Lexical Resource</strong> — Did you use varied and precise vocabulary? Did you avoid repeating the same words?<br>
+        <strong style="color:var(--text)">Grammatical Range & Accuracy</strong> — Did you use different tenses and sentence types accurately?<br>
+        <strong style="color:var(--text)">Pronunciation</strong> — Was your speech clear and easy to understand?<br><br>
+        <span style="color:var(--accent);font-family:'DM Mono',monospace;font-size:12px">Band 7 target: Speaks at length with only occasional hesitation, uses varied vocabulary, uses complex structures, clear pronunciation throughout.</span>
+      </div>
+      <br>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <div style="flex:1;min-width:180px">
+          <div class="notes-hint">Fluency & Coherence (1–9):</div>
+          <input class="text-answer" id="spk-f" type="number" min="1" max="9" placeholder="Your band">
+        </div>
+        <div style="flex:1;min-width:180px">
+          <div class="notes-hint">Lexical Resource (1–9):</div>
+          <input class="text-answer" id="spk-l" type="number" min="1" max="9" placeholder="Your band">
+        </div>
+        <div style="flex:1;min-width:180px">
+          <div class="notes-hint">Grammar (1–9):</div>
+          <input class="text-answer" id="spk-g" type="number" min="1" max="9" placeholder="Your band">
+        </div>
+        <div style="flex:1;min-width:180px">
+          <div class="notes-hint">Pronunciation (1–9):</div>
+          <input class="text-answer" id="spk-p" type="number" min="1" max="9" placeholder="Your band">
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// ═══════════════════════════ QUESTION HELPERS ═══════════════
+
+function makeBlankQ(id, num, text) {
+  const parts = text.split('__________');
+  return `
+    <div class="question-block" id="qblock-${id}">
+      <div class="q-num">QUESTION ${num}</div>
+      <div class="q-text">${parts[0]}<input class="blank-input" id="${id}" oninput="handleBlank('${id}')" placeholder="answer">${parts[1] || ''}</div>
+    </div>`;
+}
+
+function makeTFNG(id, num, text) {
+  return `
+    <div class="question-block" id="qblock-${id}">
+      <div class="q-num">QUESTION ${num}</div>
+      <div class="q-text">${text}</div>
+      <div class="tfng-options">
+        <button class="tfng-btn" onclick="selectTFNG('${id}','true',this)">TRUE</button>
+        <button class="tfng-btn" onclick="selectTFNG('${id}','false',this)">FALSE</button>
+        <button class="tfng-btn" onclick="selectTFNG('${id}','not given',this)">NOT GIVEN</button>
+      </div>
+    </div>`;
+}
+
+function makeMCQ(id, num, question, options) {
+  const letters = ['A','B','C','D'];
+  const opts = options.map(([letter,text],i) => `
+    <label class="option-label" onclick="selectMCQ('${id}','${letter.toLowerCase()}',this)">
+      <input type="radio" name="${id}" value="${letter.toLowerCase()}">
+      <span class="option-letter">${letter}</span>
+      <span>${text}</span>
+    </label>`).join('');
+  return `
+    <div class="question-block" id="qblock-${id}">
+      <div class="q-num">QUESTION ${num}</div>
+      <div class="q-text">${question}</div>
+      <div class="options-list">${opts}</div>
+    </div>`;
+}
+
+// ═══════════════════════════ INTERACTION ═══════════════════
+
+function selectTFNG(id, value, btn) {
+  answers[id] = value;
+  const parent = document.getElementById('qblock-' + id);
+  parent.querySelectorAll('.tfng-btn').forEach(b => b.className = 'tfng-btn');
+  const cls = value === 'true' ? 'selected-true' : value === 'false' ? 'selected-false' : 'selected-ng';
+  btn.classList.add(cls);
+  parent.classList.add('answered');
+}
+
+function selectMCQ(id, value, label) {
+  answers[id] = value;
+  const parent = document.getElementById('qblock-' + id);
+  parent.querySelectorAll('.option-label').forEach(l => l.classList.remove('selected'));
+  label.classList.add('selected');
+  parent.classList.add('answered');
+}
+
+function handleBlank(id) {
+  const el = document.getElementById(id);
+  answers[id] = el.value.trim().toLowerCase();
+  const block = document.getElementById('qblock-' + id);
+  if (block && el.value.trim().length > 0) block.classList.add('answered');
+}
+
+function updateWordCount(textareaId, counterId) {
+  const text = document.getElementById(textareaId).value.trim();
+  const count = text === '' ? 0 : text.split(/\s+/).length;
+  const counterEl = document.getElementById(counterId);
+  const statusEl = document.getElementById(counterId + '-status');
+  counterEl.textContent = count;
+  const min = textareaId.includes('task1') ? 150 : 250;
+  if (count >= min) {
+    counterEl.className = 'wc-ok';
+    if (statusEl) statusEl.textContent = '✓ minimum met';
+  } else {
+    counterEl.className = 'wc-low';
+    if (statusEl) statusEl.textContent = `(minimum ${min})`;
+  }
+}
+
+// ═══════════════════════════ NAVIGATION ═══════════════════
+
+function startTest() {
+  document.getElementById('intro').classList.remove('active');
+  document.getElementById('test-screen').classList.add('active');
+  loadSection(0);
+}
+
+function loadSection(idx) {
+  currentSection = idx;
+  clearInterval(timerInterval);
+
+  // Update tabs
+  SECTIONS.forEach((_,i) => {
+    const tab = document.getElementById('tab-' + i);
+    tab.classList.toggle('active-tab', i === idx);
+  });
+
+  // Update badge
+  const colors = ['badge-listening','badge-reading','badge-writing','badge-speaking'];
+  const names = ['LISTENING','READING','WRITING','SPEAKING'];
+  const badge = document.getElementById('section-badge');
+  badge.className = 'section-badge ' + colors[idx];
+  badge.textContent = names[idx];
+  document.getElementById('section-title').textContent = `Section ${idx+1} of 4`;
+
+  // Update next button
+  const nextBtn = document.getElementById('next-btn');
+  nextBtn.textContent = idx < 3 ? 'Next Section →' : 'Finish Test →';
+
+  // Progress
+  document.getElementById('progress-fill').style.width = ((idx / 4) * 100) + '%';
+
+  // Load content
+  const body = document.getElementById('test-body');
+  if (idx === 0) body.innerHTML = getListeningHTML();
+  else if (idx === 1) body.innerHTML = getReadingHTML();
+  else if (idx === 2) body.innerHTML = getWritingHTML();
+  else body.innerHTML = getSpeakingHTML();
+
+  body.scrollTop = 0;
+  window.scrollTo(0, 0);
+
+  // Start timer
+  timeLeft = TIMERS[idx];
+  updateTimerDisplay();
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    updateTimerDisplay();
+    if (timeLeft <= 0) {
+      clearInterval(timerInterval);
+      if (currentSection < 3) nextSection();
+      else showResults();
+    }
+  }, 1000);
+}
+
+function updateTimerDisplay() {
+  const m = Math.floor(timeLeft / 60).toString().padStart(2,'0');
+  const s = (timeLeft % 60).toString().padStart(2,'0');
+  const el = document.getElementById('timer-display');
+  el.textContent = `${m}:${s}`;
+  el.classList.toggle('warning', timeLeft <= 300);
+}
+
+function gotoSection(idx) {
+  if (idx <= currentSection + 1) {
+    sectionsDone[currentSection] = true;
+    document.getElementById('tab-' + currentSection).classList.add('done');
+    loadSection(idx);
+  }
+}
+
+function nextSection() {
+  sectionsDone[currentSection] = true;
+  document.getElementById('tab-' + currentSection).classList.add('done');
+  if (currentSection < 3) loadSection(currentSection + 1);
+  else showResults();
+}
+
+// ═══════════════════════════ SCORING ═══════════════════════
+
+function scoreSection(answerObj, correctObj) {
+  let correct = 0, total = Object.keys(correctObj).length;
+  Object.entries(correctObj).forEach(([k,v]) => {
+    const given = (answers[k] || '').toLowerCase().trim();
+    if (given === v.toLowerCase().trim()) correct++;
+  });
+  return { correct, total };
+}
+
+function rawToBand(correct, total) {
+  const pct = correct / total;
+  if (pct >= 0.9) return 8.5;
+  if (pct >= 0.8) return 7.5;
+  if (pct >= 0.7) return 6.5;
+  if (pct >= 0.6) return 6.0;
+  if (pct >= 0.5) return 5.5;
+  if (pct >= 0.4) return 5.0;
+  if (pct >= 0.3) return 4.5;
+  return 4.0;
+}
+
+function getSpeakingBand() {
+  const ids = ['spk-f','spk-l','spk-g','spk-p'];
+  const vals = ids.map(id => {
+    const el = document.getElementById(id);
+    return el ? parseFloat(el.value) : 0;
+  }).filter(v => v > 0);
+  if (vals.length === 0) return null;
+  return Math.round((vals.reduce((a,b) => a+b, 0) / vals.length) * 2) / 2;
+}
+
+function getWritingBand() {
+  const t1 = (document.getElementById('task1-text')?.value || '').trim().split(/\s+/).length;
+  const t2 = (document.getElementById('task2-text')?.value || '').trim().split(/\s+/).length;
+  if (t1 < 50 && t2 < 50) return null;
+  // Very rough band based on effort (word count as proxy)
+  const t2band = t2 >= 300 ? 7 : t2 >= 250 ? 6.5 : t2 >= 180 ? 6 : t2 >= 100 ? 5 : 4;
+  const t1band = t1 >= 180 ? 7 : t1 >= 150 ? 6.5 : t1 >= 100 ? 6 : t1 >= 60 ? 5 : 4;
+  return Math.round(((t1band + t2band * 2) / 3) * 2) / 2;
+}
+
+function bandDescriptor(band) {
+  if (band >= 8) return ['Very Good / Expert User', 'Handles complex language with full control and precision.'];
+  if (band >= 7) return ['Good User', 'Handles complex language well. Occasional inaccuracies. Generally effective.'];
+  if (band >= 6) return ['Competent User', 'Effective command of the language despite some inaccuracies. Generally understands complex language.'];
+  if (band >= 5) return ['Modest User', 'Partial command of the language. Copes with overall meaning in most situations.'];
+  return ['Limited User', 'Only basic competence in familiar situations. Frequent problems in understanding.'];
+}
+
+function showResults() {
+  clearInterval(timerInterval);
+  document.getElementById('test-screen').classList.remove('active');
+  const rs = document.getElementById('results-screen');
+  rs.classList.add('active');
+
+  const lScore = scoreSection(answers, listeningAnswers);
+  const rScore = scoreSection(answers, readingAnswers);
+
+  const lBand = rawToBand(lScore.correct, lScore.total);
+  const rBand = rawToBand(rScore.correct, rScore.total);
+  const wBand = getWritingBand();
+  const sBand = getSpeakingBand();
+
+  document.getElementById('score-listening').textContent = lBand.toFixed(1);
+  document.getElementById('score-reading').textContent = rBand.toFixed(1);
+  document.getElementById('score-writing').textContent = wBand ? wBand.toFixed(1) : 'N/A';
+  document.getElementById('score-speaking').textContent = sBand ? sBand.toFixed(1) : 'N/A';
+
+  const bands = [lBand, rBand, wBand || lBand, sBand || rBand];
+  const overall = Math.round((bands.reduce((a,b) => a+b, 0) / 4) * 2) / 2;
+
+  document.getElementById('ob-score').textContent = overall.toFixed(1);
+  const [desc, msg] = bandDescriptor(overall);
+  document.getElementById('ob-descriptor').textContent = desc;
+  document.getElementById('ob-message').textContent = msg + (overall >= 6.5 ? ' This score meets most Japanese university requirements.' : overall >= 6 ? ' You\'re close — with focused preparation, 6.5 is very reachable.' : ' Keep practising — aim for 6.5 for most Japanese university programmes.');
+
+  // Review items
+  const allCorrect = { ...listeningAnswers, ...readingAnswers };
+  const allLabels = {
+    l1:'Listening Q1', l2:'Listening Q2', l3:'Listening Q3', l4:'Listening Q4', l5:'Listening Q5',
+    l6:'Listening Q6', l7:'Listening Q7', l8:'Listening Q8', l9:'Listening Q9', l10:'Listening Q10',
+    r1:'Reading Q1', r2:'Reading Q2', r3:'Reading Q3', r4:'Reading Q4', r5:'Reading Q5', r6:'Reading Q6',
+    r7:'Reading Q7', r8:'Reading Q8', r9:'Reading Q9', r10:'Reading Q10',
+    r11:'Reading Q11', r12:'Reading Q12', r13:'Reading Q13'
+  };
+
+  const reviewDiv = document.getElementById('review-items');
+  reviewDiv.innerHTML = Object.entries(allCorrect).map(([k,v]) => {
+    const given = answers[k] || '—';
+    const correct = given.toLowerCase().trim() === v.toLowerCase().trim();
+    return `
+      <div class="review-item">
+        <span class="review-icon">${correct ? '✅' : '❌'}</span>
+        <div>
+          <div class="review-q">${allLabels[k]}</div>
+          <div class="review-detail">
+            Your answer: <span class="${correct ? 'correct' : 'wrong'}">${given || '(blank)'}</span>
+            ${!correct ? ` · Correct: <span class="correct">${v}</span>` : ''}
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function restartTest() {
+  answers = {};
+  sectionsDone = [false, false, false, false];
+  clearInterval(timerInterval);
+  document.getElementById('results-screen').classList.remove('active');
+  document.getElementById('intro').classList.add('active');
+  SECTIONS.forEach((_,i) => {
+    const tab = document.getElementById('tab-' + i);
+    if (tab) { tab.classList.remove('done'); tab.classList.remove('active-tab'); }
+  });
+}
+</script>
+</body>
+</html>
